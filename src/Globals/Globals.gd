@@ -18,7 +18,11 @@ var is_mouse_right_held: bool = false
 var transition: FadeScreen
 
 func go_to_with_fade(scene: String, data: Dictionary[String, Variant] = {}) -> void:
-	transition = Composer.setup_load_screen("res://src/Composer/LoadingScreens/Fade/FadeScreen.tscn")
+	var screen := Composer.setup_load_screen("res://src/Composer/LoadingScreens/Fade/FadeScreen.tscn")
+	if screen == null:
+		return
+
+	transition = screen
 
 	button_click.play()
 	if transition:

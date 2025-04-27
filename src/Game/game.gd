@@ -103,6 +103,7 @@ var firerate: Timer
 var is_triple_active: bool = false
 
 func _ready() -> void:
+	set_process_input(false)
 	ui.show()
 	load_panel.show()
 
@@ -142,6 +143,7 @@ func _ready() -> void:
 		load_file(levels_list[level_id])
 
 	update_ui()
+	set_process_input(true)
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("reset"):
