@@ -1,37 +1,31 @@
-# Brick-Breaker
- An Arkanoid clone made in Godot with a level editor
+# [Brick Breaker](https://sparrowworks.itch.io/brick-breaker)
 
-Play the game here: https://sp4r0w.itch.io/brick-breaker
+## An Arkanoid clone, featuring a level editor
 
-### About
--------------
-This is my second project made in Godot v3.5.1. It's a clone of the popular Arkanoid game. It was made using C# and it features 10 different levels and the ability to create your own ones. <br> 
-It also features multiple powerups for the player to collect after destroying bricks. There are 3 types of bricks in the game, each behaving a little differently. <br>
+### Description
+This is a clone of Arkanoid/Breakout made in Godot-4. It features a complete level editor, with the ability to save and load custom levels.
+The game has been rewritten from scratch, improving upon every aspect of the old Godot-3 version.
+List of changes:
+- Revamped gameplay - no more problems with controlling ball or weird physics
+- New powerups, bringing chaos and destruction to the bricks
+- Game now runs in 4K, with higher quality assets.
+- Improved level editor with QoL features like undo/redo and an ability to playtest levels before publishing them.
 
-Being my second C# game and me being more and more accustomed to Godot back then, the code wasn't that bad. Of course, it's not gonna be great, but I can definitely see improvement after Platformer. <br>
-I did some small clean up and added comments but I haven't made any significant changes to the code. <br>
-I uploaded this repo and preserved the game for me to look at how much I improve over time. Improving the code now, with my current knowledge defeats the point. <br>
-However, you're free to improve upon this code if you wish to do so :)
-
-### Getting Started
--------------
-To compile this project, you will need at least Godot Mono v3.5.1. Do not forget you will need the required export templates. <br> 
-More in-depth guide is avaiable here: https://docs.godotengine.org/en/stable/tutorials/export/exporting_projects.html <br>
-You're free to modify the project as you wish.
+The old version is available in a separate branch for archive purposes.
 
 ### Credits
--------------
-Thanks to DipShtick (Varga) for testing. <br>
-Graphical assets were made by Kenney (https://kenney.nl/) <br>
-I also used Dynamic Space Background by DinVStudio (https://dinvstudio.itch.io/) <br>
-Music was made by Of Far Different Nature (https://fardifferent.itch.io/) <br>
-Sound effects were made by GameAudio (https://freesound.org/people/GameAudio/) <br>
-Fonts used are Watermelon days by Khurasan and Poppins by Jonny Pinhorn. <br>
+Thanks to VargaDot for testing. <br>
+Art and music credits can be found in-game.
 
-### Preview
--------------
-![Screenshot 2](images/screen1.png)
-![Screenshot 2](images/screen2.png)
-![Screenshot 3](images/screen3.png)
+### Installation
+- This game is playable on the [Itch](https://sparrowworks.itch.io/brick-breaker) page.
+- Download the project from [Itch](https://sparrowworks.itch.io/brick-breaker) and follow the instructions on how to play the game.
+- You can also [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or download the repository and play it through Godot Editor.
+- 
+# WARNING ! To compile this project yourself, you will need a copy of the [UI Theme](https://azagaya.itch.io/simplebox-gui/devlog/260537/another-theme-for-godot-games) here. 
+Place it in the main/assets/UI folder. If it doesn't exist, create one. This project will break if it is not included!
 
-Play the game here: https://sp4r0w.itch.io/brick-breaker
+### Screenshots
+<img src="https://img.itch.zone/aW1hZ2UvMTc2NDgwOS8xMDM3ODA4Ny5wbmc=/original/kEITtw.png">
+<img src="https://img.itch.zone/aW1hZ2UvMTc2NDgwOS8xMDM3ODA4OC5wbmc=/original/CbUs%2Bv.png">
+<img src="https://img.itch.zone/aW1hZ2UvMTc2NDgwOS8xMDM3ODA4OS5wbmc=/original/GtG5XI.png">
