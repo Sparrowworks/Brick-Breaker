@@ -23,7 +23,7 @@ Art and music credits can be found in-game.
 - You can also [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or download the repository and play it through Godot Editor.
 - 
 # WARNING ! To compile this project yourself, you will need a copy of the [UI Theme](https://azagaya.itch.io/simplebox-gui/devlog/260537/another-theme-for-godot-games) here. 
-Place it in the main/assets/UI folder. If it doesn't exist, create one. This project will break if it is not included!
+Place it in the assets/UI folder. If it doesn't exist, create one. This project will break if it is not included!
 
 ### Screenshots
 <img src="https://img.itch.zone/aW1hZ2UvMTc2NDgwOS8xMDM3ODA4Ny5wbmc=/original/kEITtw.png">
