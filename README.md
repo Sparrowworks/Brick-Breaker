@@ -26,6 +26,7 @@ Art and music credits can be found in-game.
 Place it in the assets/UI folder. If it doesn't exist, create one. This project will break if it is not included!
 
 ### Screenshots
-<img src="https://img.itch.zone/aW1hZ2UvMTc2NDgwOS8xMDM3ODA4Ny5wbmc=/original/kEITtw.png">
-<img src="https://img.itch.zone/aW1hZ2UvMTc2NDgwOS8xMDM3ODA4OC5wbmc=/original/CbUs%2Bv.png">
-<img src="https://img.itch.zone/aW1hZ2UvMTc2NDgwOS8xMDM3ODA4OS5wbmc=/original/GtG5XI.png">
+<img src="https://img.itch.zone/aW1hZ2UvMTc2NDgwOS8yMDkyNDM5Ni5wbmc=/original/BjWqJP.png">
+<img src="https://img.itch.zone/aW1hZ2UvMTc2NDgwOS8yMDkyNDM5OC5wbmc=/original/f3VaI%2B.png">
+<img src="https://img.itch.zone/aW1hZ2UvMTc2NDgwOS8yMDkyNDM5Ny5wbmc=/original/oFiZE6.png">
+<img src="https://img.itch.zone/aW1hZ2UvMTc2NDgwOS8yMDkyNDM5OS5wbmc=/original/qMbwle.png">
