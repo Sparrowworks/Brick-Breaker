@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcp0xnygxqtcr"]
+
+[ext_resource type="Theme" uid="uid://t8gshn41l055" path="res://assets/UI/SimpleBox.tres" id="1_3pkr1"]
+[ext_resource type="FontFile" uid="uid://buaj0e6ma8lke" path="res://assets/fonts/Lemon Days.ttf" id="1_rv7ro"]
+[ext_resource type="Script" uid="uid://bx0ldlgdohveo" path="res://src/Menus/Editor/EditorLoadFile/editor_load_file.gd" id="2_ccy2l"]
+[ext_resource type="Texture2D" uid="uid://f6sytssnr3aa" path="res://assets/images/UI/buttonNormal.png" id="2_sai43"]
+[ext_resource type="Texture2D" uid="uid://ds6mc7tp31i8t" path="res://assets/images/UI/buttonPressed.png" id="3_3pkr1"]
+[ext_resource type="Texture2D" uid="uid://hp1uhoihkab3" path="res://assets/images/UI/buttonHover.png" id="4_ccy2l"]
+
+[node name="EditorLoadFile" type="Panel"]
+custom_minimum_size = Vector2(2000, 164)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_3pkr1")
+script = ExtResource("2_ccy2l")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Title" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_rv7ro")
+theme_override_font_sizes/font_size = 96
+text = "my level"
+horizontal_alignment = 1
+
+[node name="Author" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_rv7ro")
+theme_override_font_sizes/font_size = 96
+text = "anon"
+horizontal_alignment = 1
+
+[node name="EditButton" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_sai43")
+texture_pressed = ExtResource("3_3pkr1")
+texture_hover = ExtResource("4_ccy2l")
+
+[node name="Label" type="Label" parent="HBoxContainer/EditButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_rv7ro")
+theme_override_font_sizes/font_size = 84
+text = "edit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DelButton" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_sai43")
+texture_pressed = ExtResource("3_3pkr1")
+texture_hover = ExtResource("4_ccy2l")
+
+[node name="Label" type="Label" parent="HBoxContainer/DelButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_rv7ro")
+theme_override_font_sizes/font_size = 84
+text = "delete"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/EditButton" to="." method="_on_edit_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/DelButton" to="." method="_on_del_button_pressed"]

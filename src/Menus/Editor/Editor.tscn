@@ -1,0 +1,1232 @@
+[gd_scene load_steps=24 format=3 uid="uid://iaw80hsf4x71"]
+
+[ext_resource type="Script" uid="uid://bsfel28kpsr7c" path="res://src/Menus/Editor/editor.gd" id="1_5phii"]
+[ext_resource type="PackedScene" uid="uid://dpogaavnre2lf" path="res://src/Menus/Editor/EditorStart/EditorStart.tscn" id="1_u73vp"]
+[ext_resource type="FontFile" uid="uid://buaj0e6ma8lke" path="res://assets/fonts/Lemon Days.ttf" id="2_g3obb"]
+[ext_resource type="PackedScene" uid="uid://bd06smlahh8gb" path="res://src/Menus/Editor/EditorError/EditorError.tscn" id="3_rfhw0"]
+[ext_resource type="Theme" uid="uid://t8gshn41l055" path="res://assets/UI/SimpleBox.tres" id="4_58obn"]
+[ext_resource type="Texture2D" uid="uid://cta2w4e0a183k" path="res://assets/images/Game/blueArmour.png" id="5_1b2vh"]
+[ext_resource type="PackedScene" uid="uid://b71gk1cjx2wlu" path="res://src/Menus/Editor/EditorBrickButton/EditorBrickButton.tscn" id="5_n6xd6"]
+[ext_resource type="Texture2D" uid="uid://ccrn6rqukatyv" path="res://assets/images/Game/greenBrick.png" id="6_4cnee"]
+[ext_resource type="Texture2D" uid="uid://b281sywdhdey7" path="res://assets/images/Game/greenArmour.png" id="7_bxvbh"]
+[ext_resource type="Texture2D" uid="uid://dr2rvqgagtxft" path="res://assets/images/Game/greyBrick.png" id="7_nc2fu"]
+[ext_resource type="Texture2D" uid="uid://detgwmm5b2lcg" path="res://assets/images/Game/orangeBrick.png" id="8_4m33t"]
+[ext_resource type="Texture2D" uid="uid://cl2xoxrajgaft" path="res://assets/images/Game/greyArmour.png" id="9_00yvc"]
+[ext_resource type="Texture2D" uid="uid://0sw6ll4pydpr" path="res://assets/images/Game/redBrick.png" id="9_ybej6"]
+[ext_resource type="Texture2D" uid="uid://dm4ort68icqb8" path="res://assets/images/Game/yellowBrick.png" id="10_lmtid"]
+[ext_resource type="PackedScene" uid="uid://cb8nql7a4j7ee" path="res://src/Menus/Editor/EditorTypeButton/EditorTypeButton.tscn" id="11_4m33t"]
+[ext_resource type="Texture2D" uid="uid://b7qceb78g1bdh" path="res://assets/images/Game/orangeArmour.png" id="11_jnkrs"]
+[ext_resource type="Texture2D" uid="uid://f6sytssnr3aa" path="res://assets/images/UI/buttonNormal.png" id="12_3ipks"]
+[ext_resource type="Texture2D" uid="uid://c1q4jd78n74h0" path="res://assets/images/Game/redArmour.png" id="13_u0sya"]
+[ext_resource type="Texture2D" uid="uid://ds6mc7tp31i8t" path="res://assets/images/UI/buttonPressed.png" id="13_yx7ee"]
+[ext_resource type="Texture2D" uid="uid://hp1uhoihkab3" path="res://assets/images/UI/buttonHover.png" id="14_rfhw0"]
+[ext_resource type="Texture2D" uid="uid://23qvfhmkdlk2" path="res://assets/images/Game/yellowArmour.png" id="15_8m116"]
+[ext_resource type="PackedScene" uid="uid://dl4w3fuko4fi" path="res://src/Menus/Editor/EditorLevelButton/EditorLevelButton.tscn" id="15_yx7ee"]
+[ext_resource type="PackedScene" uid="uid://duqhx5ybhwqqs" path="res://src/Menus/Editor/EditorLoad/EditorLoad.tscn" id="23_bxvbh"]
+
+[node name="Editor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5phii")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 94.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 72
+text = "Level editor"
+horizontal_alignment = 1
+
+[node name="BrickPanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(700, 2000)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -1000.0
+offset_right = 720.0
+offset_bottom = 1000.0
+grow_vertical = 2
+theme = ExtResource("4_58obn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BrickPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="BrickButtons" type="VBoxContainer" parent="BrickPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="ColorTitle" type="Label" parent="BrickPanel/VBoxContainer/BrickButtons"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 72
+text = "brick color:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BlueBrick" parent="BrickPanel/VBoxContainer/BrickButtons" instance=ExtResource("5_n6xd6")]
+layout_mode = 2
+armoured_button_texture = ExtResource("5_1b2vh")
+button_id = 1
+
+[node name="GreenBrick" parent="BrickPanel/VBoxContainer/BrickButtons" instance=ExtResource("5_n6xd6")]
+layout_mode = 2
+button_texture = ExtResource("6_4cnee")
+armoured_button_texture = ExtResource("7_bxvbh")
+button_id = 2
+
+[node name="GreyBrick" parent="BrickPanel/VBoxContainer/BrickButtons" instance=ExtResource("5_n6xd6")]
+layout_mode = 2
+button_texture = ExtResource("7_nc2fu")
+armoured_button_texture = ExtResource("9_00yvc")
+button_id = 3
+
+[node name="OrangeBrick" parent="BrickPanel/VBoxContainer/BrickButtons" instance=ExtResource("5_n6xd6")]
+layout_mode = 2
+button_texture = ExtResource("8_4m33t")
+armoured_button_texture = ExtResource("11_jnkrs")
+button_id = 4
+
+[node name="RedBrick" parent="BrickPanel/VBoxContainer/BrickButtons" instance=ExtResource("5_n6xd6")]
+layout_mode = 2
+button_texture = ExtResource("9_ybej6")
+armoured_button_texture = ExtResource("13_u0sya")
+button_id = 5
+
+[node name="YellowBrick" parent="BrickPanel/VBoxContainer/BrickButtons" instance=ExtResource("5_n6xd6")]
+layout_mode = 2
+button_texture = ExtResource("10_lmtid")
+armoured_button_texture = ExtResource("15_8m116")
+button_id = 6
+
+[node name="TypeButton" type="VBoxContainer" parent="BrickPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="ColorTitle2" type="Label" parent="BrickPanel/VBoxContainer/TypeButton"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 72
+text = "brick type:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TypeNormal" parent="BrickPanel/VBoxContainer/TypeButton" instance=ExtResource("11_4m33t")]
+layout_mode = 2
+type_id = 1
+
+[node name="TypeArmoured" parent="BrickPanel/VBoxContainer/TypeButton" instance=ExtResource("11_4m33t")]
+layout_mode = 2
+type_id = 2
+
+[node name="TypeImmune" parent="BrickPanel/VBoxContainer/TypeButton" instance=ExtResource("11_4m33t")]
+layout_mode = 2
+type_id = 3
+
+[node name="ClearButton" type="TextureButton" parent="BrickPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("12_3ipks")
+texture_pressed = ExtResource("13_yx7ee")
+texture_hover = ExtResource("14_rfhw0")
+
+[node name="Label" type="Label" parent="BrickPanel/VBoxContainer/ClearButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 64
+text = "Clear area"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoPanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(700, 2000)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -720.0
+offset_top = -998.0
+offset_right = -20.0
+offset_bottom = 1002.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("4_58obn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Name" type="VBoxContainer" parent="InfoPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="NameTitle" type="Label" parent="InfoPanel/VBoxContainer/Name"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 72
+text = "Level name:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="InfoPanel/VBoxContainer/Name"]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+
+[node name="NameEdit" type="LineEdit" parent="InfoPanel/VBoxContainer/Name/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_right = 250.0
+offset_bottom = 108.0
+grow_horizontal = 2
+theme = ExtResource("4_58obn")
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 72
+placeholder_text = "my level"
+alignment = 1
+max_length = 10
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="Author" type="VBoxContainer" parent="InfoPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="AuthorTitle" type="Label" parent="InfoPanel/VBoxContainer/Author"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 72
+text = "level author:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="InfoPanel/VBoxContainer/Author"]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+
+[node name="AuthorEdit" type="LineEdit" parent="InfoPanel/VBoxContainer/Author/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_right = 250.0
+offset_bottom = 108.0
+grow_horizontal = 2
+theme = ExtResource("4_58obn")
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 72
+placeholder_text = "Anon"
+alignment = 1
+max_length = 10
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="Save" type="VBoxContainer" parent="InfoPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="SaveButton" type="TextureButton" parent="InfoPanel/VBoxContainer/Save"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("12_3ipks")
+texture_pressed = ExtResource("13_yx7ee")
+texture_hover = ExtResource("14_rfhw0")
+
+[node name="Label" type="Label" parent="InfoPanel/VBoxContainer/Save/SaveButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 64
+text = "save file"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="InfoPanel/VBoxContainer/Save"]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+
+[node name="AutoSave" type="CheckBox" parent="InfoPanel/VBoxContainer/Save/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -203.0
+offset_top = -51.5
+offset_right = 203.0
+offset_bottom = 51.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_58obn")
+theme_override_constants/h_separation = 25
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 72
+text = "Auto save"
+
+[node name="Counters" type="VBoxContainer" parent="InfoPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Title" type="Label" parent="InfoPanel/VBoxContainer/Counters"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 72
+text = "brick counters:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="NormalText" type="Label" parent="InfoPanel/VBoxContainer/Counters"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 72
+text = "Normal: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ArmourText" type="Label" parent="InfoPanel/VBoxContainer/Counters"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 72
+text = "Armoured: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ImmuneText" type="Label" parent="InfoPanel/VBoxContainer/Counters"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 72
+text = "immune: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="FilePanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 740.0
+offset_top = 700.0
+offset_right = 3100.0
+offset_bottom = 1000.0
+grow_vertical = 2
+theme = ExtResource("4_58obn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FilePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PathText" type="Label" parent="FilePanel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 48
+text = "(unsaved) file name: my_level.lvl"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="FilePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="PlayButton" type="TextureButton" parent="FilePanel/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("12_3ipks")
+texture_pressed = ExtResource("13_yx7ee")
+texture_hover = ExtResource("14_rfhw0")
+
+[node name="Label" type="Label" parent="FilePanel/VBoxContainer/Buttons/PlayButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 64
+text = "Play level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoadButton" type="TextureButton" parent="FilePanel/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("12_3ipks")
+texture_pressed = ExtResource("13_yx7ee")
+texture_hover = ExtResource("14_rfhw0")
+
+[node name="Label" type="Label" parent="FilePanel/VBoxContainer/Buttons/LoadButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 64
+text = "Load file"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NewButton" type="TextureButton" parent="FilePanel/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("12_3ipks")
+texture_pressed = ExtResource("13_yx7ee")
+texture_hover = ExtResource("14_rfhw0")
+
+[node name="Label" type="Label" parent="FilePanel/VBoxContainer/Buttons/NewButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 64
+text = "new file"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButton" type="TextureButton" parent="FilePanel/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("12_3ipks")
+texture_pressed = ExtResource("13_yx7ee")
+texture_hover = ExtResource("14_rfhw0")
+
+[node name="Label" type="Label" parent="FilePanel/VBoxContainer/Buttons/MenuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_g3obb")
+theme_override_font_sizes/font_size = 64
+text = "menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bricks" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1164.0
+offset_top = -980.0
+offset_right = 1164.0
+offset_bottom = 584.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 11
+
+[node name="EditorLevelButton" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton2" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton3" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton4" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton5" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton6" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton7" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton8" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton9" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton10" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton11" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton12" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton13" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton14" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton15" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton16" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton17" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton18" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton19" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton20" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton21" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton22" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton23" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton24" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton25" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton26" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton27" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton28" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton29" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton30" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton31" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton32" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton33" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton34" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton35" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton36" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton37" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton38" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton39" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton40" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton41" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton42" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton43" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton44" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton45" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton46" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton47" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton48" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton49" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton50" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton51" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton52" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton53" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton54" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton55" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton56" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton57" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton58" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton59" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton60" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton61" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton62" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton63" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton64" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton65" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton66" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton67" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton68" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton69" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton70" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton71" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton72" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton73" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton74" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton75" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton76" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton77" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton78" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton79" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton80" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton81" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton82" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton83" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton84" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton85" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton86" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton87" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton88" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton89" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton90" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton91" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton92" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton93" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton94" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton95" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton96" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton97" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton98" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton99" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton100" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton101" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton102" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton103" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton104" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton105" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton106" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton107" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton108" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton109" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton110" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton111" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton112" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton113" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton114" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton115" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton116" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton117" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton118" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton119" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton120" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton121" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton122" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton123" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton124" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton125" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton126" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton127" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton128" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton129" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton130" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton131" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorLevelButton132" parent="Bricks" instance=ExtResource("15_yx7ee")]
+layout_mode = 2
+
+[node name="EditorStart" parent="." instance=ExtResource("1_u73vp")]
+visible = false
+layout_mode = 1
+
+[node name="EditorLoad" parent="." instance=ExtResource("23_bxvbh")]
+visible = false
+layout_mode = 1
+
+[node name="EditorError" parent="." instance=ExtResource("3_rfhw0")]
+visible = false
+layout_mode = 1
+
+[connection signal="type_changed" from="." to="BrickPanel/VBoxContainer/BrickButtons/BlueBrick" method="_on_editor_type_changed"]
+[connection signal="type_changed" from="." to="BrickPanel/VBoxContainer/BrickButtons/GreenBrick" method="_on_editor_type_changed"]
+[connection signal="type_changed" from="." to="BrickPanel/VBoxContainer/BrickButtons/GreyBrick" method="_on_editor_type_changed"]
+[connection signal="type_changed" from="." to="BrickPanel/VBoxContainer/BrickButtons/OrangeBrick" method="_on_editor_type_changed"]
+[connection signal="type_changed" from="." to="BrickPanel/VBoxContainer/BrickButtons/RedBrick" method="_on_editor_type_changed"]
+[connection signal="type_changed" from="." to="BrickPanel/VBoxContainer/BrickButtons/YellowBrick" method="_on_editor_type_changed"]
+[connection signal="brick_pressed" from="BrickPanel/VBoxContainer/BrickButtons/BlueBrick" to="." method="_on_editor_brick_pressed"]
+[connection signal="brick_pressed" from="BrickPanel/VBoxContainer/BrickButtons/GreenBrick" to="." method="_on_editor_brick_pressed"]
+[connection signal="brick_pressed" from="BrickPanel/VBoxContainer/BrickButtons/GreyBrick" to="." method="_on_editor_brick_pressed"]
+[connection signal="brick_pressed" from="BrickPanel/VBoxContainer/BrickButtons/OrangeBrick" to="." method="_on_editor_brick_pressed"]
+[connection signal="brick_pressed" from="BrickPanel/VBoxContainer/BrickButtons/RedBrick" to="." method="_on_editor_brick_pressed"]
+[connection signal="brick_pressed" from="BrickPanel/VBoxContainer/BrickButtons/YellowBrick" to="." method="_on_editor_brick_pressed"]
+[connection signal="type_pressed" from="BrickPanel/VBoxContainer/TypeButton/TypeNormal" to="." method="_on_editor_button_type_pressed"]
+[connection signal="type_pressed" from="BrickPanel/VBoxContainer/TypeButton/TypeArmoured" to="." method="_on_editor_button_type_pressed"]
+[connection signal="type_pressed" from="BrickPanel/VBoxContainer/TypeButton/TypeImmune" to="." method="_on_editor_button_type_pressed"]
+[connection signal="pressed" from="BrickPanel/VBoxContainer/ClearButton" to="." method="_on_clear_button_pressed"]
+[connection signal="text_changed" from="InfoPanel/VBoxContainer/Name/Control/NameEdit" to="." method="_on_name_edit_text_changed"]
+[connection signal="text_submitted" from="InfoPanel/VBoxContainer/Name/Control/NameEdit" to="." method="_on_name_edit_text_submitted"]
+[connection signal="text_changed" from="InfoPanel/VBoxContainer/Author/Control/AuthorEdit" to="." method="_on_author_edit_text_changed"]
+[connection signal="text_submitted" from="InfoPanel/VBoxContainer/Author/Control/AuthorEdit" to="." method="_on_author_edit_text_submitted"]
+[connection signal="pressed" from="InfoPanel/VBoxContainer/Save/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="toggled" from="InfoPanel/VBoxContainer/Save/Control/AutoSave" to="." method="_on_check_box_toggled"]
+[connection signal="pressed" from="FilePanel/VBoxContainer/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="FilePanel/VBoxContainer/Buttons/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="FilePanel/VBoxContainer/Buttons/NewButton" to="." method="_on_new_button_pressed"]
+[connection signal="pressed" from="FilePanel/VBoxContainer/Buttons/MenuButton" to="." method="_on_editor_start_menu_selected"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton2" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton2" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton3" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton3" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton4" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton4" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton5" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton5" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton6" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton6" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton7" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton7" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton8" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton8" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton9" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton9" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton10" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton10" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton11" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton11" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton12" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton12" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton13" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton13" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton14" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton14" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton15" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton15" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton16" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton16" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton17" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton17" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton18" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton18" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton19" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton19" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton20" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton20" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton21" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton21" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton22" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton22" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton23" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton23" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton24" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton24" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton25" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton25" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton26" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton26" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton27" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton27" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton28" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton28" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton29" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton29" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton30" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton30" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton31" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton31" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton32" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton32" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton33" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton33" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton34" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton34" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton35" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton35" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton36" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton36" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton37" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton37" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton38" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton38" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton39" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton39" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton40" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton40" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton41" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton41" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton42" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton42" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton43" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton43" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton44" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton44" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton45" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton45" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton46" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton46" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton47" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton47" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton48" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton48" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton49" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton49" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton50" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton50" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton51" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton51" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton52" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton52" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton53" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton53" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton54" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton54" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton55" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton55" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton56" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton56" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton57" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton57" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton58" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton58" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton59" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton59" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton60" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton60" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton61" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton61" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton62" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton62" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton63" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton63" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton64" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton64" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton65" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton65" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton66" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton66" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton67" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton67" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton68" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton68" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton69" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton69" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton70" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton70" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton71" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton71" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton72" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton72" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton73" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton73" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton74" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton74" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton75" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton75" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton76" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton76" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton77" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton77" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton78" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton78" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton79" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton79" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton80" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton80" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton81" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton81" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton82" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton82" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton83" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton83" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton84" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton84" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton85" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton85" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton86" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton86" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton87" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton87" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton88" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton88" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton89" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton89" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton90" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton90" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton91" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton91" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton92" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton92" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton93" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton93" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton94" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton94" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton95" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton95" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton96" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton96" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton97" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton97" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton98" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton98" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton99" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton99" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton100" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton100" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton101" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton101" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton102" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton102" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton103" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton103" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton104" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton104" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton105" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton105" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton106" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton106" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton107" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton107" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton108" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton108" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton109" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton109" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton110" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton110" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton111" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton111" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton112" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton112" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton113" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton113" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton114" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton114" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton115" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton115" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton116" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton116" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton117" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton117" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton118" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton118" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton119" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton119" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton120" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton120" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton121" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton121" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton122" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton122" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton123" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton123" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton124" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton124" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton125" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton125" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton126" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton126" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton127" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton127" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton128" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton128" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton129" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton129" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton130" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton130" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton131" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton131" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="brick_left_pressed" from="Bricks/EditorLevelButton132" to="." method="_on_editor_level_brick_left_pressed"]
+[connection signal="brick_right_pressed" from="Bricks/EditorLevelButton132" to="." method="_on_editor_level_brick_right_pressed"]
+[connection signal="load_file_selected" from="EditorStart" to="." method="_on_editor_start_load_file_selected"]
+[connection signal="menu_selected" from="EditorStart" to="." method="_on_editor_start_menu_selected"]
+[connection signal="new_file_selected" from="EditorStart" to="." method="_on_editor_start_new_file_selected"]
+[connection signal="back_pressed" from="EditorLoad" to="." method="_on_editor_load_back_pressed"]
+[connection signal="level_edit_pressed" from="EditorLoad" to="." method="_on_editor_load_level_edit_pressed"]

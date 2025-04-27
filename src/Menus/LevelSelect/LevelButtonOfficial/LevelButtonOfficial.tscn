@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://brbx268ccv7d1"]
+
+[ext_resource type="Texture2D" uid="uid://be8rcbl6vimtd" path="res://assets/images/UI/buttonSquareNormal.png" id="1_bduo4"]
+[ext_resource type="Texture2D" uid="uid://4cctrpuneriv" path="res://assets/images/UI/buttonSquarePressed.png" id="2_5d55j"]
+[ext_resource type="Texture2D" uid="uid://1bla7piaxuhe" path="res://assets/images/UI/buttonSquareHover.png" id="3_hd8mj"]
+[ext_resource type="Script" uid="uid://b67d5w0sbg1ci" path="res://src/Menus/LevelSelect/LevelButtonOfficial/level_button_official.gd" id="4_5d55j"]
+[ext_resource type="FontFile" uid="uid://buaj0e6ma8lke" path="res://assets/fonts/Lemon Days.ttf" id="4_p7eq8"]
+
+[node name="LevelButtonOfficial" type="TextureButton"]
+texture_normal = ExtResource("1_bduo4")
+texture_pressed = ExtResource("2_5d55j")
+texture_hover = ExtResource("3_hd8mj")
+script = ExtResource("4_5d55j")
+
+[node name="LevelText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_p7eq8")
+theme_override_font_sizes/font_size = 192
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

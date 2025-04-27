@@ -1,0 +1,1111 @@
+[gd_scene load_steps=26 format=3 uid="uid://6qjhbmaf0uty"]
+
+[ext_resource type="Script" uid="uid://dqqapeyaock2y" path="res://src/Game/game.gd" id="1_rn0ke"]
+[ext_resource type="Texture2D" uid="uid://crgw6c75kk4fr" path="res://assets/images/Game/gameBackground.png" id="1_tvsue"]
+[ext_resource type="PackedScene" uid="uid://bhuh555usg1sk" path="res://src/Game/Paddle/Paddle.tscn" id="2_ggd3w"]
+[ext_resource type="PackedScene" uid="uid://jl1mrovpo4s" path="res://src/Game/Ball/Ball.tscn" id="3_5fh4b"]
+[ext_resource type="Theme" uid="uid://t8gshn41l055" path="res://assets/UI/SimpleBox.tres" id="4_0fb64"]
+[ext_resource type="FontFile" uid="uid://buaj0e6ma8lke" path="res://assets/fonts/Lemon Days.ttf" id="7_2s6fp"]
+[ext_resource type="Texture2D" uid="uid://f6sytssnr3aa" path="res://assets/images/UI/buttonNormal.png" id="8_5ikym"]
+[ext_resource type="Texture2D" uid="uid://ds6mc7tp31i8t" path="res://assets/images/UI/buttonPressed.png" id="9_itvb1"]
+[ext_resource type="AudioStream" uid="uid://b3gs17pq0v8sp" path="res://assets/audio/SFX/goodpowerup.wav" id="10_2tdsy"]
+[ext_resource type="Texture2D" uid="uid://hp1uhoihkab3" path="res://assets/images/UI/buttonHover.png" id="10_v2fk1"]
+[ext_resource type="AudioStream" uid="uid://cs1jqqb7acijn" path="res://assets/audio/SFX/shoot.wav" id="11_1bwsa"]
+[ext_resource type="AudioStream" uid="uid://bby2ocpemudgg" path="res://assets/audio/SFX/badpowerup.wav" id="11_f8fsp"]
+[ext_resource type="AudioStream" uid="uid://cat73w5ixd44i" path="res://assets/audio/SFX/win.mp3" id="14_2j31g"]
+[ext_resource type="AudioStream" uid="uid://dw31duiitapq7" path="res://assets/audio/SFX/fail.wav" id="15_2tdsy"]
+[ext_resource type="AudioStream" uid="uid://ctwbgcblpybvr" path="res://assets/audio/SFX/bouncepaddle.wav" id="16_t210i"]
+[ext_resource type="AudioStream" uid="uid://de0qqj35anrks" path="res://assets/audio/SFX/gameover.mp3" id="16_ydgt6"]
+[ext_resource type="AudioStream" uid="uid://bpx3rbb8gxgl2" path="res://assets/audio/SFX/bouncenormal.wav" id="17_2j31g"]
+[ext_resource type="AudioStream" uid="uid://ck0k5njabbrrv" path="res://assets/audio/SFX/bouncearmor.wav" id="18_fslp3"]
+[ext_resource type="PackedScene" uid="uid://2oesv8oouqko" path="res://src/Game/MusicPlayer/MusicPlayer.tscn" id="20_f8fsp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0fb64"]
+size = Vector2(20, 2145)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8fsp"]
+size = Vector2(20, 2145)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qb2ae"]
+size = Vector2(2400, 20)
+
+[sub_resource type="Animation" id="Animation_5ikym"]
+resource_name = "GameOver"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Paddle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ball:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bricks:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeftBall:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RightBall:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_itvb1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Paddle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ball:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bricks:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeftBall:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RightBall:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v2fk1"]
+_data = {
+&"GameOver": SubResource("Animation_5ikym"),
+&"RESET": SubResource("Animation_itvb1")
+}
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_rn0ke")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("1_tvsue")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 2160)
+
+[node name="Paddle" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("2_ggd3w")]
+position = Vector2(1920, 1920)
+collision_mask = 5
+ball = NodePath("../Ball")
+
+[node name="Ball" parent="." node_paths=PackedStringArray("paddle") instance=ExtResource("3_5fh4b")]
+position = Vector2(1920, 1820)
+paddle = NodePath("../Paddle")
+
+[node name="LeftBall" parent="." node_paths=PackedStringArray("paddle") instance=ExtResource("3_5fh4b")]
+visible = false
+position = Vector2(1520, 1720)
+paddle = NodePath("../Paddle")
+is_locked = true
+has_ball_started = true
+is_first_start = false
+
+[node name="RightBall" parent="." node_paths=PackedStringArray("paddle") instance=ExtResource("3_5fh4b")]
+visible = false
+position = Vector2(2320, 1720)
+paddle = NodePath("../Paddle")
+is_locked = true
+has_ball_started = true
+is_first_start = false
+
+[node name="Bricks" type="Node2D" parent="."]
+
+[node name="WallLeft" type="StaticBody2D" parent="."]
+position = Vector2(710, 1075)
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_0fb64")
+
+[node name="WallRight" type="StaticBody2D" parent="."]
+position = Vector2(3130, 1080)
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_f8fsp")
+
+[node name="WallTop" type="StaticBody2D" parent="."]
+position = Vector2(1920, -10)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallTop"]
+shape = SubResource("RectangleShape2D_qb2ae")
+
+[node name="TimeTimer" type="Timer" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Help" type="Label" parent="CanvasLayer/UI"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 110.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 84
+text = "Move the paddle to start"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LeftPanel" type="Panel" parent="CanvasLayer/UI"]
+custom_minimum_size = Vector2(700, 2000)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -1000.0
+offset_right = 720.0
+offset_bottom = 1000.0
+grow_vertical = 2
+theme = ExtResource("4_0fb64")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/LeftPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/LeftPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 150
+
+[node name="Title" type="Label" parent="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 84
+text = "BRICK BREAKER"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="LevelTitle" type="Label" parent="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer/VBoxContainer4"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "level_name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LevelAuthor" type="Label" parent="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer/VBoxContainer4"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "by anon"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Title" type="Label" parent="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "Your stats:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TimeText" type="Label" parent="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "Time: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ScoreText" type="Label" parent="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BrickText" type="Label" parent="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "Destroyed: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LivesText" type="Label" parent="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "balls left: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="EditorButton" type="TextureButton" parent="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_5ikym")
+texture_pressed = ExtResource("9_itvb1")
+texture_hover = ExtResource("10_v2fk1")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer/VBoxContainer3/EditorButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 48
+text = "Back to editor"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResetButton" type="TextureButton" parent="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_5ikym")
+texture_pressed = ExtResource("9_itvb1")
+texture_hover = ExtResource("10_v2fk1")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer/VBoxContainer3/ResetButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "reset"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButton" type="TextureButton" parent="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_5ikym")
+texture_pressed = ExtResource("9_itvb1")
+texture_hover = ExtResource("10_v2fk1")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer/VBoxContainer3/MenuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightPanel" type="Panel" parent="CanvasLayer/UI"]
+custom_minimum_size = Vector2(700, 2000)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -720.0
+offset_top = -998.0
+offset_right = -20.0
+offset_bottom = 1002.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("4_0fb64")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="CanvasLayer/UI/RightPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = 1000
+dragging_enabled = false
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/RightPanel/VSplitContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="Powerups" type="VBoxContainer" parent="CanvasLayer/UI/RightPanel/VSplitContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Title" type="Label" parent="CanvasLayer/UI/RightPanel/VSplitContainer/MarginContainer/Powerups"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "active powers:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Powers" type="VBoxContainer" parent="CanvasLayer/UI/RightPanel/VSplitContainer/MarginContainer/Powerups"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Resize" type="Label" parent="CanvasLayer/UI/RightPanel/VSplitContainer/MarginContainer/Powerups/Powers"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "resize: 30"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Weak" type="Label" parent="CanvasLayer/UI/RightPanel/VSplitContainer/MarginContainer/Powerups/Powers"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "weak ball: 30"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Strong" type="Label" parent="CanvasLayer/UI/RightPanel/VSplitContainer/MarginContainer/Powerups/Powers"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "strong ball: 30"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Slow" type="Label" parent="CanvasLayer/UI/RightPanel/VSplitContainer/MarginContainer/Powerups/Powers"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "slow speed: 30"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Fast" type="Label" parent="CanvasLayer/UI/RightPanel/VSplitContainer/MarginContainer/Powerups/Powers"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "fast speed: 30"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Shoot" type="Label" parent="CanvasLayer/UI/RightPanel/VSplitContainer/MarginContainer/Powerups/Powers"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "Bullets: 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="MusicPlayer" type="VBoxContainer" parent="CanvasLayer/UI/RightPanel/VSplitContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/UI/RightPanel/VSplitContainer/MusicPlayer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "music player:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Powers" type="VBoxContainer" parent="CanvasLayer/UI/RightPanel/VSplitContainer/MusicPlayer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="TrackName" type="Label" parent="CanvasLayer/UI/RightPanel/VSplitContainer/MusicPlayer/Powers"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "playing:
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LoopStatus" type="Label" parent="CanvasLayer/UI/RightPanel/VSplitContainer/MusicPlayer/Powers"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "loop: off"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Mute" type="Label" parent="CanvasLayer/UI/RightPanel/VSplitContainer/MusicPlayer/Powers"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "'m' - mute"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Loop" type="Label" parent="CanvasLayer/UI/RightPanel/VSplitContainer/MusicPlayer/Powers"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "'L' - loop"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Change" type="Label" parent="CanvasLayer/UI/RightPanel/VSplitContainer/MusicPlayer/Powers"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "up or down - switch track"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LoadPanel" type="Panel" parent="CanvasLayer/UI"]
+custom_minimum_size = Vector2(700, 2000)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_0fb64")
+
+[node name="Title" type="Label" parent="CanvasLayer/UI/LoadPanel"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 144
+text = "PLEASE WAIT, LOADING AUDIO..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="WinPanel" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/WinPanel"]
+custom_minimum_size = Vector2(1000, 900)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -350.0
+offset_right = 250.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_0fb64")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/WinPanel/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/WinPanel/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 125
+
+[node name="Title" type="Label" parent="CanvasLayer/WinPanel/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "level completed!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/WinPanel/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WinTime" type="Label" parent="CanvasLayer/WinPanel/Panel/MarginContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "total Time: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="WinScore" type="Label" parent="CanvasLayer/WinPanel/Panel/MarginContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "total Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="WinBricks" type="Label" parent="CanvasLayer/WinPanel/Panel/MarginContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "destroyed bricks: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/WinPanel/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="WinEditorButton" type="TextureButton" parent="CanvasLayer/WinPanel/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_5ikym")
+texture_pressed = ExtResource("9_itvb1")
+texture_hover = ExtResource("10_v2fk1")
+
+[node name="Label" type="Label" parent="CanvasLayer/WinPanel/Panel/MarginContainer/VBoxContainer/HBoxContainer/WinEditorButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 48
+text = "Back to editor"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextButton" type="TextureButton" parent="CanvasLayer/WinPanel/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_5ikym")
+texture_pressed = ExtResource("9_itvb1")
+texture_hover = ExtResource("10_v2fk1")
+
+[node name="Label" type="Label" parent="CanvasLayer/WinPanel/Panel/MarginContainer/VBoxContainer/HBoxContainer/NextButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 64
+text = "next level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButton" type="TextureButton" parent="CanvasLayer/WinPanel/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_5ikym")
+texture_pressed = ExtResource("9_itvb1")
+texture_hover = ExtResource("10_v2fk1")
+
+[node name="Label" type="Label" parent="CanvasLayer/WinPanel/Panel/MarginContainer/VBoxContainer/HBoxContainer/MenuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LosePanel" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/LosePanel"]
+custom_minimum_size = Vector2(1000, 900)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -350.0
+offset_right = 250.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_0fb64")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/LosePanel/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LosePanel/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 125
+
+[node name="Title" type="Label" parent="CanvasLayer/LosePanel/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "Game over!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/LosePanel/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LoseTime" type="Label" parent="CanvasLayer/LosePanel/Panel/MarginContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "total Time: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LoseScore" type="Label" parent="CanvasLayer/LosePanel/Panel/MarginContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "total Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LoseBricks" type="Label" parent="CanvasLayer/LosePanel/Panel/MarginContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "missed bricks: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/LosePanel/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="ResetButton" type="TextureButton" parent="CanvasLayer/LosePanel/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_5ikym")
+texture_pressed = ExtResource("9_itvb1")
+texture_hover = ExtResource("10_v2fk1")
+
+[node name="Label" type="Label" parent="CanvasLayer/LosePanel/Panel/MarginContainer/VBoxContainer/HBoxContainer/ResetButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "reset"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButton" type="TextureButton" parent="CanvasLayer/LosePanel/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_5ikym")
+texture_pressed = ExtResource("9_itvb1")
+texture_hover = ExtResource("10_v2fk1")
+
+[node name="Label" type="Label" parent="CanvasLayer/LosePanel/Panel/MarginContainer/VBoxContainer/HBoxContainer/MenuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("7_2s6fp")
+theme_override_font_sizes/font_size = 72
+text = "menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_v2fk1")
+}
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Goodpowerup" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("10_2tdsy")
+volume_db = 10.0
+bus = &"SFX"
+
+[node name="Badpowerup" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("11_f8fsp")
+volume_db = 5.0
+bus = &"SFX"
+
+[node name="Shoot" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("11_1bwsa")
+bus = &"SFX"
+
+[node name="Win" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("14_2j31g")
+bus = &"SFX"
+
+[node name="Gameover" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("16_ydgt6")
+bus = &"SFX"
+
+[node name="Fail" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("15_2tdsy")
+volume_db = 10.0
+bus = &"SFX"
+
+[node name="Bouncepaddle" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("16_t210i")
+volume_db = 10.0
+bus = &"SFX"
+
+[node name="Bouncenormal" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("17_2j31g")
+volume_db = 10.0
+bus = &"SFX"
+
+[node name="Bouncearmor" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("18_fslp3")
+volume_db = 10.0
+bus = &"SFX"
+
+[node name="MusicPlayer" parent="." instance=ExtResource("20_f8fsp")]
+
+[connection signal="game_over" from="." to="." method="_on_game_over"]
+[connection signal="game_over" from="." to="Paddle" method="_on_game_game_over"]
+[connection signal="game_reset" from="." to="Paddle" method="_on_game_game_reset"]
+[connection signal="game_reset" from="." to="Ball" method="_on_game_game_reset"]
+[connection signal="game_won" from="." to="." method="_on_game_won"]
+[connection signal="game_won" from="." to="Paddle" method="_on_game_game_won"]
+[connection signal="show_help" from="Paddle" to="." method="_on_paddle_show_help"]
+[connection signal="ball_brick_armour_bounced" from="Ball" to="." method="_on_ball_ball_brick_armour_bounced"]
+[connection signal="ball_brick_normal_bounced" from="Ball" to="." method="_on_ball_ball_brick_normal_bounced"]
+[connection signal="ball_dead" from="Ball" to="." method="_on_ball_ball_dead"]
+[connection signal="ball_paddle_bounced" from="Ball" to="." method="_on_ball_ball_paddle_bounced"]
+[connection signal="faded_out" from="Ball" to="Paddle" method="_on_ball_faded_out"]
+[connection signal="first_start" from="Ball" to="." method="_on_ball_first_start"]
+[connection signal="hide_help" from="Ball" to="." method="_on_ball_hide_help"]
+[connection signal="ball_brick_armour_bounced" from="LeftBall" to="." method="_on_ball_ball_brick_armour_bounced"]
+[connection signal="ball_brick_normal_bounced" from="LeftBall" to="." method="_on_ball_ball_brick_normal_bounced"]
+[connection signal="ball_dead" from="LeftBall" to="." method="_on_ball_ball_dead"]
+[connection signal="ball_paddle_bounced" from="LeftBall" to="." method="_on_ball_ball_paddle_bounced"]
+[connection signal="ball_brick_armour_bounced" from="RightBall" to="." method="_on_ball_ball_brick_armour_bounced"]
+[connection signal="ball_brick_normal_bounced" from="RightBall" to="." method="_on_ball_ball_brick_normal_bounced"]
+[connection signal="ball_dead" from="RightBall" to="." method="_on_ball_ball_dead"]
+[connection signal="ball_paddle_bounced" from="RightBall" to="." method="_on_ball_ball_paddle_bounced"]
+[connection signal="timeout" from="TimeTimer" to="." method="_on_time_timeout"]
+[connection signal="pressed" from="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer/VBoxContainer3/EditorButton" to="." method="_on_editor_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer/VBoxContainer3/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/LeftPanel/MarginContainer/VBoxContainer/VBoxContainer3/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/WinPanel/Panel/MarginContainer/VBoxContainer/HBoxContainer/WinEditorButton" to="." method="_on_editor_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/WinPanel/Panel/MarginContainer/VBoxContainer/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/WinPanel/Panel/MarginContainer/VBoxContainer/HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/LosePanel/Panel/MarginContainer/VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/LosePanel/Panel/MarginContainer/VBoxContainer/HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="loop_changed" from="MusicPlayer" to="." method="_on_music_player_loop_changed"]
+[connection signal="track_changed" from="MusicPlayer" to="." method="_on_music_player_track_changed"]

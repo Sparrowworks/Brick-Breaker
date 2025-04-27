@@ -1,0 +1,337 @@
+[gd_scene load_steps=10 format=3 uid="uid://cry6amwh2ahew"]
+
+[ext_resource type="Script" uid="uid://bq8paa0u4ls7y" path="res://src/Menus/LevelSelect/level_select.gd" id="1_1ad8v"]
+[ext_resource type="FontFile" uid="uid://buaj0e6ma8lke" path="res://assets/fonts/Lemon Days.ttf" id="1_7xy8w"]
+[ext_resource type="Texture2D" uid="uid://f6sytssnr3aa" path="res://assets/images/UI/buttonNormal.png" id="2_1ad8v"]
+[ext_resource type="Texture2D" uid="uid://ds6mc7tp31i8t" path="res://assets/images/UI/buttonPressed.png" id="3_occw8"]
+[ext_resource type="PackedScene" uid="uid://brbx268ccv7d1" path="res://src/Menus/LevelSelect/LevelButtonOfficial/LevelButtonOfficial.tscn" id="3_xow0l"]
+[ext_resource type="Texture2D" uid="uid://hp1uhoihkab3" path="res://assets/images/UI/buttonHover.png" id="4_xow0l"]
+
+[sub_resource type="Animation" id="Animation_occw8"]
+resource_name = "Custom"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Buttons/OfficialLevels:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Buttons/OfficialLevels:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Buttons/CustomLevels:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Buttons/CustomLevels:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ra380"]
+resource_name = "Official"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Buttons/OfficialLevels:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Buttons/OfficialLevels:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Buttons/CustomLevels:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Buttons/CustomLevels:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xow0l"]
+_data = {
+&"Custom": SubResource("Animation_occw8"),
+&"Official": SubResource("Animation_ra380")
+}
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1ad8v")
+
+[node name="Text" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Title" type="Label" parent="Text"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7xy8w")
+theme_override_font_sizes/font_size = 256
+text = "Select a level:"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -840.0
+offset_top = -531.0
+offset_right = 840.0
+offset_bottom = 731.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+
+[node name="OfficialLevels" type="GridContainer" parent="Buttons"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 100
+columns = 5
+
+[node name="LevelButtonOfficial" parent="Buttons/OfficialLevels" instance=ExtResource("3_xow0l")]
+layout_mode = 2
+level_title = "1"
+
+[node name="LevelButtonOfficial2" parent="Buttons/OfficialLevels" instance=ExtResource("3_xow0l")]
+layout_mode = 2
+level_id = 1
+level_title = "2"
+
+[node name="LevelButtonOfficial3" parent="Buttons/OfficialLevels" instance=ExtResource("3_xow0l")]
+layout_mode = 2
+level_id = 2
+level_title = "3"
+
+[node name="LevelButtonOfficial4" parent="Buttons/OfficialLevels" instance=ExtResource("3_xow0l")]
+layout_mode = 2
+level_id = 3
+level_title = "4"
+
+[node name="LevelButtonOfficial5" parent="Buttons/OfficialLevels" instance=ExtResource("3_xow0l")]
+layout_mode = 2
+level_id = 4
+level_title = "5"
+
+[node name="LevelButtonOfficial6" parent="Buttons/OfficialLevels" instance=ExtResource("3_xow0l")]
+layout_mode = 2
+level_id = 5
+level_title = "6"
+
+[node name="LevelButtonOfficial7" parent="Buttons/OfficialLevels" instance=ExtResource("3_xow0l")]
+layout_mode = 2
+level_id = 6
+level_title = "7"
+
+[node name="LevelButtonOfficial8" parent="Buttons/OfficialLevels" instance=ExtResource("3_xow0l")]
+layout_mode = 2
+level_id = 7
+level_title = "8"
+
+[node name="LevelButtonOfficial9" parent="Buttons/OfficialLevels" instance=ExtResource("3_xow0l")]
+layout_mode = 2
+level_id = 8
+level_title = "9"
+
+[node name="LevelButtonOfficial10" parent="Buttons/OfficialLevels" instance=ExtResource("3_xow0l")]
+layout_mode = 2
+level_id = 9
+level_title = "10"
+
+[node name="CustomLevels" type="ScrollContainer" parent="Buttons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(2100, 900)
+layout_mode = 2
+size_flags_horizontal = 4
+horizontal_scroll_mode = 0
+
+[node name="ButtonContainer" type="VBoxContainer" parent="Buttons/CustomLevels"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(2100, 850)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="NoFiles" type="Label" parent="Buttons/CustomLevels/ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7xy8w")
+theme_override_font_sizes/font_size = 96
+text = "No levels have been found."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubTitle" type="Label" parent="Buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7xy8w")
+theme_override_font_sizes/font_size = 72
+text = "select which levels to play:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 100
+
+[node name="OfficialButton" type="TextureButton" parent="Buttons/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_1ad8v")
+texture_pressed = ExtResource("3_occw8")
+texture_hover = ExtResource("4_xow0l")
+
+[node name="Label" type="Label" parent="Buttons/HBoxContainer/OfficialButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_7xy8w")
+theme_override_font_sizes/font_size = 84
+text = "official"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CustomButton" type="TextureButton" parent="Buttons/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_1ad8v")
+texture_pressed = ExtResource("3_occw8")
+texture_hover = ExtResource("4_xow0l")
+
+[node name="Label" type="Label" parent="Buttons/HBoxContainer/CustomButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_7xy8w")
+theme_override_font_sizes/font_size = 84
+text = "custom"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButton" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_1ad8v")
+texture_pressed = ExtResource("3_occw8")
+texture_hover = ExtResource("4_xow0l")
+
+[node name="Label" type="Label" parent="Buttons/MenuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_7xy8w")
+theme_override_font_sizes/font_size = 84
+text = "Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xow0l")
+}
+
+[connection signal="level_pressed" from="Buttons/OfficialLevels/LevelButtonOfficial" to="." method="_on_level_button_official_level_pressed"]
+[connection signal="level_pressed" from="Buttons/OfficialLevels/LevelButtonOfficial2" to="." method="_on_level_button_official_level_pressed"]
+[connection signal="level_pressed" from="Buttons/OfficialLevels/LevelButtonOfficial3" to="." method="_on_level_button_official_level_pressed"]
+[connection signal="level_pressed" from="Buttons/OfficialLevels/LevelButtonOfficial4" to="." method="_on_level_button_official_level_pressed"]
+[connection signal="level_pressed" from="Buttons/OfficialLevels/LevelButtonOfficial5" to="." method="_on_level_button_official_level_pressed"]
+[connection signal="level_pressed" from="Buttons/OfficialLevels/LevelButtonOfficial6" to="." method="_on_level_button_official_level_pressed"]
+[connection signal="level_pressed" from="Buttons/OfficialLevels/LevelButtonOfficial7" to="." method="_on_level_button_official_level_pressed"]
+[connection signal="level_pressed" from="Buttons/OfficialLevels/LevelButtonOfficial8" to="." method="_on_level_button_official_level_pressed"]
+[connection signal="level_pressed" from="Buttons/OfficialLevels/LevelButtonOfficial9" to="." method="_on_level_button_official_level_pressed"]
+[connection signal="level_pressed" from="Buttons/OfficialLevels/LevelButtonOfficial10" to="." method="_on_level_button_official_level_pressed"]
+[connection signal="pressed" from="Buttons/HBoxContainer/OfficialButton" to="." method="_on_official_button_pressed"]
+[connection signal="pressed" from="Buttons/HBoxContainer/CustomButton" to="." method="_on_custom_button_pressed"]
+[connection signal="pressed" from="Buttons/MenuButton" to="." method="_on_menu_button_pressed"]

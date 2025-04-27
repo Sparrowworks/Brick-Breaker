@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://2oesv8oouqko"]
+
+[ext_resource type="AudioStream" uid="uid://4sms1rk6ytl0" path="res://assets/audio/Music/0 to 100.mp3" id="1_ypk8e"]
+[ext_resource type="Script" uid="uid://o1cohpklxhqj" path="res://src/Game/MusicPlayer/music_player.gd" id="1_ypoyj"]
+[ext_resource type="AudioStream" uid="uid://djc001cifu5sv" path="res://assets/audio/Music/Cruiser.mp3" id="2_ypoyj"]
+[ext_resource type="AudioStream" uid="uid://d3aul7xvmyjll" path="res://assets/audio/Music/Le Flamand.mp3" id="3_ebdfc"]
+[ext_resource type="AudioStream" uid="uid://bhgx74gmjeeca" path="res://assets/audio/Music/Stream.mp3" id="4_rewii"]
+[ext_resource type="AudioStream" uid="uid://d1hd424vk7v1y" path="res://assets/audio/Music/Voltage.mp3" id="5_wjvi8"]
+
+[node name="MusicPlayer" type="Node"]
+script = ExtResource("1_ypoyj")
+
+[node name="0_To_100" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_ypk8e")
+volume_db = -10.0
+bus = &"Music"
+
+[node name="Cruiser" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ypoyj")
+volume_db = -10.0
+bus = &"Music"
+
+[node name="Le_Flamand" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ebdfc")
+volume_db = -10.0
+bus = &"Music"
+
+[node name="Stream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_rewii")
+volume_db = -10.0
+bus = &"Music"
+
+[node name="Voltage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_wjvi8")
+volume_db = -10.0
+bus = &"Music"

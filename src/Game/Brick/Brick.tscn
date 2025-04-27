@@ -1,0 +1,138 @@
+[gd_scene load_steps=17 format=3 uid="uid://bbj2ru4myav80"]
+
+[ext_resource type="Texture2D" uid="uid://b2knape6dgaqh" path="res://assets/images/Game/blueBrick.png" id="1_5c4e0"]
+[ext_resource type="Script" uid="uid://b2hb16p4s5ivq" path="res://src/Game/Brick/brick.gd" id="1_n1ko5"]
+[ext_resource type="Texture2D" uid="uid://ccrn6rqukatyv" path="res://assets/images/Game/greenBrick.png" id="2_n1ko5"]
+[ext_resource type="Texture2D" uid="uid://dr2rvqgagtxft" path="res://assets/images/Game/greyBrick.png" id="3_vgntk"]
+[ext_resource type="Texture2D" uid="uid://detgwmm5b2lcg" path="res://assets/images/Game/orangeBrick.png" id="4_bh224"]
+[ext_resource type="Texture2D" uid="uid://0sw6ll4pydpr" path="res://assets/images/Game/redBrick.png" id="5_fi4mc"]
+[ext_resource type="Texture2D" uid="uid://dm4ort68icqb8" path="res://assets/images/Game/yellowBrick.png" id="6_6k8rd"]
+[ext_resource type="Texture2D" uid="uid://cta2w4e0a183k" path="res://assets/images/Game/blueArmour.png" id="7_6iaxm"]
+[ext_resource type="Texture2D" uid="uid://b281sywdhdey7" path="res://assets/images/Game/greenArmour.png" id="8_67sai"]
+[ext_resource type="Texture2D" uid="uid://cl2xoxrajgaft" path="res://assets/images/Game/greyArmour.png" id="9_02i25"]
+[ext_resource type="Texture2D" uid="uid://b7qceb78g1bdh" path="res://assets/images/Game/orangeArmour.png" id="10_wghkv"]
+[ext_resource type="Texture2D" uid="uid://c1q4jd78n74h0" path="res://assets/images/Game/redArmour.png" id="11_be5rs"]
+[ext_resource type="Texture2D" uid="uid://23qvfhmkdlk2" path="res://assets/images/Game/yellowArmour.png" id="12_fsxjt"]
+[ext_resource type="Texture2D" uid="uid://v3xjif4y4r5p" path="res://assets/images/Game/blackBrick.png" id="13_hf8je"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hs5gx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5c4e0")
+}],
+"loop": true,
+"name": &"1_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n1ko5")
+}],
+"loop": true,
+"name": &"1_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vgntk")
+}],
+"loop": true,
+"name": &"1_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_bh224")
+}],
+"loop": true,
+"name": &"1_4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_fi4mc")
+}],
+"loop": true,
+"name": &"1_5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_6k8rd")
+}],
+"loop": true,
+"name": &"1_6",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_6iaxm")
+}],
+"loop": true,
+"name": &"2_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_67sai")
+}],
+"loop": true,
+"name": &"2_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_02i25")
+}],
+"loop": true,
+"name": &"2_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_wghkv")
+}],
+"loop": true,
+"name": &"2_4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_be5rs")
+}],
+"loop": true,
+"name": &"2_5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_fsxjt")
+}],
+"loop": true,
+"name": &"2_6",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_hf8je")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5c4e0"]
+size = Vector2(208, 108)
+
+[node name="Brick" type="StaticBody2D"]
+collision_layer = 8
+script = ExtResource("1_n1ko5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hs5gx")
+animation = &"1_1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5c4e0")
+debug_color = Color(0, 0.6, 0, 0.419608)

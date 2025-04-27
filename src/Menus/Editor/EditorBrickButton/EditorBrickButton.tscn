@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://b71gk1cjx2wlu"]
+
+[ext_resource type="Texture2D" uid="uid://dgdlivix4bm0o" path="res://assets/images/UI/arrow.png" id="1_8d7ob"]
+[ext_resource type="Script" uid="uid://bguuqgiqdg7ki" path="res://src/Menus/Editor/EditorBrickButton/EditorBrickButton.gd" id="1_ixerr"]
+[ext_resource type="Texture2D" uid="uid://b2knape6dgaqh" path="res://assets/images/Game/blueBrick.png" id="2_ypq7w"]
+
+[node name="EditorBrickButton" type="Control"]
+custom_minimum_size = Vector2(700, 108)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -3140.0
+offset_bottom = -2060.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ixerr")
+button_texture = ExtResource("2_ypq7w")
+
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(700, 100)
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 100.0
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Arrow" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_8d7ob")
+stretch_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_ypq7w")
+
+[connection signal="pressed" from="VBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]

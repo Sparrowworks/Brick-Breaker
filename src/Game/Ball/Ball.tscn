@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://jl1mrovpo4s"]
+
+[ext_resource type="Script" uid="uid://dl316y2vw1xpi" path="res://src/Game/Ball/ball.gd" id="1_xv2g1"]
+[ext_resource type="Texture2D" uid="uid://be3ta86eoad3y" path="res://assets/images/Game/ball.png" id="2_yr7gh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yr7gh"]
+size = Vector2(74, 74)
+
+[node name="Ball" type="CharacterBody2D"]
+collision_mask = 14
+motion_mode = 1
+slide_on_ceiling = false
+wall_min_slide_angle = 0.0
+safe_margin = 1.0
+script = ExtResource("1_xv2g1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_yr7gh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yr7gh")

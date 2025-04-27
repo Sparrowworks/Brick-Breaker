@@ -1,0 +1,189 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmpfu7hv3i8pp"]
+
+[ext_resource type="Script" uid="uid://bclgbyk3ig8dt" path="res://src/Menus/MainMenu/main_menu.gd" id="1_2pb0l"]
+[ext_resource type="FontFile" uid="uid://buaj0e6ma8lke" path="res://assets/fonts/Lemon Days.ttf" id="1_x6jsa"]
+[ext_resource type="Texture2D" uid="uid://f6sytssnr3aa" path="res://assets/images/UI/buttonNormal.png" id="2_yv1sc"]
+[ext_resource type="Texture2D" uid="uid://ds6mc7tp31i8t" path="res://assets/images/UI/buttonPressed.png" id="3_2pb0l"]
+[ext_resource type="Texture2D" uid="uid://hp1uhoihkab3" path="res://assets/images/UI/buttonHover.png" id="4_0v87u"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2pb0l")
+
+[node name="VersionText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -225.0
+offset_top = -84.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_x6jsa")
+theme_override_font_sizes/font_size = 64
+text = "v1.0.0.0"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Text" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Title" type="Label" parent="Text"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_x6jsa")
+theme_override_font_sizes/font_size = 256
+text = "Brick Breaker"
+horizontal_alignment = 1
+
+[node name="Dev" type="Label" parent="Text"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_x6jsa")
+theme_override_font_sizes/font_size = 96
+text = "A game by sparrowworks"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -320.0
+offset_right = 192.0
+offset_bottom = 520.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="PlayButton" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("2_yv1sc")
+texture_pressed = ExtResource("3_2pb0l")
+texture_hover = ExtResource("4_0v87u")
+
+[node name="Label" type="Label" parent="Buttons/PlayButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_x6jsa")
+theme_override_font_sizes/font_size = 84
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EditorButton" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("2_yv1sc")
+texture_pressed = ExtResource("3_2pb0l")
+texture_hover = ExtResource("4_0v87u")
+
+[node name="Label" type="Label" parent="Buttons/EditorButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_x6jsa")
+theme_override_font_sizes/font_size = 84
+text = "Editor"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionsButton" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("2_yv1sc")
+texture_pressed = ExtResource("3_2pb0l")
+texture_hover = ExtResource("4_0v87u")
+
+[node name="Label" type="Label" parent="Buttons/OptionsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_x6jsa")
+theme_override_font_sizes/font_size = 72
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpButton" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("2_yv1sc")
+texture_pressed = ExtResource("3_2pb0l")
+texture_hover = ExtResource("4_0v87u")
+
+[node name="Label" type="Label" parent="Buttons/HelpButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_x6jsa")
+theme_override_font_sizes/font_size = 84
+text = "help"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitButton" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("2_yv1sc")
+texture_pressed = ExtResource("3_2pb0l")
+texture_hover = ExtResource("4_0v87u")
+
+[node name="Label" type="Label" parent="Buttons/QuitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_x6jsa")
+theme_override_font_sizes/font_size = 84
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Buttons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Buttons/EditorButton" to="." method="_on_editor_button_pressed"]
+[connection signal="pressed" from="Buttons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Buttons/HelpButton" to="." method="_on_help_button_pressed"]
+[connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

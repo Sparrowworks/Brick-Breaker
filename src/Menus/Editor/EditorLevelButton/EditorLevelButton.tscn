@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dl4w3fuko4fi"]
+
+[ext_resource type="Texture2D" uid="uid://v3xjif4y4r5p" path="res://assets/images/Game/blackBrick.png" id="1_turnj"]
+[ext_resource type="Script" uid="uid://dd18dpfue8k8h" path="res://src/Menus/Editor/EditorLevelButton/editor_level_button.gd" id="2_6d4i8"]
+
+[node name="EditorLevelButton" type="TextureButton"]
+self_modulate = Color(1, 1, 1, 0.376471)
+texture_normal = ExtResource("1_turnj")
+script = ExtResource("2_6d4i8")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://cb8nql7a4j7ee"]
+
+[ext_resource type="Script" uid="uid://dcf18i764gfb5" path="res://src/Menus/Editor/EditorTypeButton/editor_type_button.gd" id="1_dw1wa"]
+[ext_resource type="Texture2D" uid="uid://dgdlivix4bm0o" path="res://assets/images/UI/arrow.png" id="1_t028d"]
+[ext_resource type="Texture2D" uid="uid://f6sytssnr3aa" path="res://assets/images/UI/buttonNormal.png" id="2_xnrdy"]
+[ext_resource type="Texture2D" uid="uid://ds6mc7tp31i8t" path="res://assets/images/UI/buttonPressed.png" id="3_dw1wa"]
+[ext_resource type="Texture2D" uid="uid://hp1uhoihkab3" path="res://assets/images/UI/buttonHover.png" id="4_wq6qd"]
+[ext_resource type="FontFile" uid="uid://buaj0e6ma8lke" path="res://assets/fonts/Lemon Days.ttf" id="5_xnrdy"]
+
+[node name="EditorTypeButton" type="Control"]
+custom_minimum_size = Vector2(700, 128)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -3140.0
+offset_bottom = -2032.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dw1wa")
+
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(700, 100)
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 100.0
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Arrow" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("1_t028d")
+stretch_mode = 2
+
+[node name="Button" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_xnrdy")
+texture_pressed = ExtResource("3_dw1wa")
+texture_hover = ExtResource("4_wq6qd")
+
+[node name="ButtonText" type="Label" parent="VBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("5_xnrdy")
+theme_override_font_sizes/font_size = 72
+text = "Normal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

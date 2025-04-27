@@ -1,0 +1,190 @@
+[gd_scene load_steps=10 format=3 uid="uid://cr1gyns54ug8b"]
+
+[ext_resource type="Script" uid="uid://b4h3eer81oa8l" path="res://src/Menus/Help/help.gd" id="1_t41m3"]
+[ext_resource type="FontFile" uid="uid://buaj0e6ma8lke" path="res://assets/fonts/Lemon Days.ttf" id="2_0l5q0"]
+[ext_resource type="Texture2D" uid="uid://f6sytssnr3aa" path="res://assets/images/UI/buttonNormal.png" id="4_gxfae"]
+[ext_resource type="Texture2D" uid="uid://ds6mc7tp31i8t" path="res://assets/images/UI/buttonPressed.png" id="5_fej3d"]
+[ext_resource type="Texture2D" uid="uid://hp1uhoihkab3" path="res://assets/images/UI/buttonHover.png" id="6_5e588"]
+
+[sub_resource type="Animation" id="Animation_61sgk"]
+resource_name = "FadeIn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrollContainer/Text:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0l5q0"]
+resource_name = "FadeOut"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrollContainer/Text:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t41m3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrollContainer/Text:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6bdxf"]
+_data = {
+&"FadeIn": SubResource("Animation_61sgk"),
+&"FadeOut": SubResource("Animation_0l5q0"),
+&"RESET": SubResource("Animation_t41m3")
+}
+
+[node name="Help" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t41m3")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 333.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_0l5q0")
+theme_override_font_sizes/font_size = 256
+text = "Help:"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(2000, 930)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1000.0
+offset_top = -565.0
+offset_right = 1000.0
+offset_bottom = 365.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="Text" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="HelpTitle" type="Label" parent="ScrollContainer/Text"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0l5q0")
+theme_override_font_sizes/font_size = 96
+text = "Help:"
+horizontal_alignment = 1
+
+[node name="Help" type="Label" parent="ScrollContainer/Text"]
+custom_minimum_size = Vector2(2000, 800)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0l5q0")
+theme_override_font_sizes/font_size = 72
+text = "Move the paddle around to bounce the ball and destroy the bricks. To finish a level, you must destroy all of them. Bricks with white outlines need 2 hits to be destroyed. Black ones are indestructible and do not count towards your goal. You might also gain a powerup, which may give you a buff or a debuff, depending on your luck. "
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = 522.0
+offset_right = 192.0
+offset_bottom = 878.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="SwitchButton" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_gxfae")
+texture_pressed = ExtResource("5_fej3d")
+texture_hover = ExtResource("6_5e588")
+
+[node name="Label" type="Label" parent="Buttons/SwitchButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_0l5q0")
+theme_override_font_sizes/font_size = 64
+text = "Next page"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_gxfae")
+texture_pressed = ExtResource("5_fej3d")
+texture_hover = ExtResource("6_5e588")
+
+[node name="Label" type="Label" parent="Buttons/BackButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_0l5q0")
+theme_override_font_sizes/font_size = 84
+text = "menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6bdxf")
+}
+
+[connection signal="pressed" from="Buttons/SwitchButton" to="." method="_on_switch_button_pressed"]
+[connection signal="pressed" from="Buttons/BackButton" to="." method="_on_back_button_pressed"]

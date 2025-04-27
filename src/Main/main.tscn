@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://cspds2457j0l8"]
+
+[ext_resource type="Script" uid="uid://dogh5kjnqs8bk" path="res://src/Main/main.gd" id="1_k4pwg"]
+[ext_resource type="Texture2D" uid="uid://22s1u0xynt2s" path="res://assets/images/Menu/background.png" id="2_wkb84"]
+[ext_resource type="AudioStream" uid="uid://bai26xdv3p17v" path="res://assets/audio/Music/MenuTheme.mp3" id="3_xsymy"]
+[ext_resource type="AudioStream" uid="uid://b5gmaw7mtvjxu" path="res://assets/audio/SFX/buttonclick.wav" id="4_xsymy"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k4pwg")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(0, 2160)
+autoscroll = Vector2(0, 50)
+
+[node name="Background" type="Sprite2D" parent="Parallax2D"]
+texture_repeat = 2
+texture = ExtResource("2_wkb84")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 2160)
+
+[node name="MenuTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xsymy")
+volume_db = -15.0
+bus = &"Music"
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_xsymy")
+volume_db = 5.0
+bus = &"SFX"
