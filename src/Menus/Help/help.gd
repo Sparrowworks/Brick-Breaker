@@ -22,6 +22,7 @@ var content: Array[String] = [
 	d or Right arrow - Move right
 	Esc - Back to menu
 	R - Reset the level
+	P - Pause or Unpause the game
 
 	Editor shortcuts:
 	LCTRL + S - Save

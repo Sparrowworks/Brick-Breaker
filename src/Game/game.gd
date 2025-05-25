@@ -1,5 +1,6 @@
 extends Node2D
 
+signal game_paused()
 signal game_reset()
 signal game_over()
 signal game_won()
@@ -24,6 +25,7 @@ signal game_won()
 
 @onready var load_panel: Panel = $CanvasLayer/UI/LoadPanel
 @onready var ui: Control = %UI
+@onready var pause_ui: Control = $CanvasLayer/PauseUi
 @onready var help: Label = %Help
 @onready var level_title: Label = %LevelTitle
 @onready var level_author: Label = %LevelAuthor
@@ -148,6 +150,11 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("reset"):
 		_on_reset_button_pressed()
+
+	if Input.is_action_just_pressed("pause"):
+		set_process_input(false)
+		get_tree().paused = true
+		game_paused.emit()
 
 	if Input.is_action_just_pressed("menu"):
 		_on_menu_button_pressed()
@@ -734,3 +741,11 @@ func _on_ball_ball_brick_normal_bounced() -> void:
 
 func _on_ball_ball_brick_armour_bounced() -> void:
 	bouncearmor.play()
+
+
+func _on_pause_ui_game_unpaused() -> void:
+	get_tree().paused = false
+	Globals.button_click.play()
+
+	await get_tree().create_timer(0.5).timeout
+	set_process_input(true)

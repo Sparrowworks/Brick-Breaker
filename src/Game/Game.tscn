@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://6qjhbmaf0uty"]
+[gd_scene load_steps=27 format=3 uid="uid://6qjhbmaf0uty"]
 
 [ext_resource type="Script" uid="uid://dqqapeyaock2y" path="res://src/Game/game.gd" id="1_rn0ke"]
 [ext_resource type="Texture2D" uid="uid://crgw6c75kk4fr" path="res://assets/images/Game/gameBackground.png" id="1_tvsue"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://f6sytssnr3aa" path="res://assets/images/UI/buttonNormal.png" id="8_5ikym"]
 [ext_resource type="Texture2D" uid="uid://ds6mc7tp31i8t" path="res://assets/images/UI/buttonPressed.png" id="9_itvb1"]
 [ext_resource type="AudioStream" uid="uid://b3gs17pq0v8sp" path="res://assets/audio/SFX/goodpowerup.wav" id="10_2tdsy"]
+[ext_resource type="PackedScene" uid="uid://cxqo5igb1csw8" path="res://src/Game/PauseUI/PauseUI.tscn" id="10_f8fsp"]
 [ext_resource type="Texture2D" uid="uid://hp1uhoihkab3" path="res://assets/images/UI/buttonHover.png" id="10_v2fk1"]
 [ext_resource type="AudioStream" uid="uid://cs1jqqb7acijn" path="res://assets/audio/SFX/shoot.wav" id="11_1bwsa"]
 [ext_resource type="AudioStream" uid="uid://bby2ocpemudgg" path="res://assets/audio/SFX/badpowerup.wav" id="11_f8fsp"]
@@ -254,6 +255,7 @@ shape = SubResource("RectangleShape2D_qb2ae")
 
 [node name="UI" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1025,6 +1027,8 @@ text = "menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PauseUi" parent="CanvasLayer" instance=ExtResource("10_f8fsp")]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_v2fk1")
@@ -1078,6 +1082,7 @@ bus = &"SFX"
 
 [connection signal="game_over" from="." to="." method="_on_game_over"]
 [connection signal="game_over" from="." to="Paddle" method="_on_game_game_over"]
+[connection signal="game_paused" from="." to="CanvasLayer/PauseUi" method="_on_game_game_paused"]
 [connection signal="game_reset" from="." to="Paddle" method="_on_game_game_reset"]
 [connection signal="game_reset" from="." to="Ball" method="_on_game_game_reset"]
 [connection signal="game_won" from="." to="." method="_on_game_won"]
@@ -1107,5 +1112,6 @@ bus = &"SFX"
 [connection signal="pressed" from="CanvasLayer/WinPanel/Panel/MarginContainer/VBoxContainer/HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/LosePanel/Panel/MarginContainer/VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/LosePanel/Panel/MarginContainer/VBoxContainer/HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="game_unpaused" from="CanvasLayer/PauseUi" to="." method="_on_pause_ui_game_unpaused"]
 [connection signal="loop_changed" from="MusicPlayer" to="." method="_on_music_player_loop_changed"]
 [connection signal="track_changed" from="MusicPlayer" to="." method="_on_music_player_track_changed"]
