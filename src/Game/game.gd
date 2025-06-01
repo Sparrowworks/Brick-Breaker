@@ -114,6 +114,7 @@ func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 	test_powerup.queue_free()
 
+	# Preloading the sounds helps preventing lag on web build
 	if OS.get_name() == "Web":
 		await Globals.transition.finished_fade_out
 
@@ -197,6 +198,7 @@ func setup_level(data: Level) -> void:
 	var x_init_pos: float = 860
 	var y_init_pos: float = 154
 
+	# Create the bricks for the level
 	for key: Vector2i in data.level_dict.keys():
 		var brick_data: BrickLevelType = data.level_dict[key]
 
@@ -212,7 +214,6 @@ func setup_level(data: Level) -> void:
 
 		bricks.add_child(brick)
 
-
 func start_game() -> void:
 	music_player.enable()
 	time_timer.start()
@@ -227,6 +228,7 @@ func spawn_powerup(brick_pos: Vector2) -> void:
 	powerups.append(powerup)
 
 	powerup.global_position = brick_pos
+	# Prevent spawning the triple ball from spawning if its already present or active
 	if is_triple_active:
 		powerup.powerup_type = randi_range(1, 7)
 	else:
@@ -661,6 +663,7 @@ func _on_game_won() -> void:
 
 	win.play()
 
+	# Show a button to return to editor if we're testing
 	if get_meta("editor_launch", false):
 		win_editor_button.show()
 	else:
@@ -715,7 +718,6 @@ func _on_reset_button_pressed() -> void:
 func _on_menu_button_pressed() -> void:
 	Globals.go_to_with_fade("res://src/Menus/LevelSelect/LevelSelect.tscn", {"list": levels_list})
 
-
 func _on_paddle_show_help() -> void:
 	help.show()
 
@@ -741,7 +743,6 @@ func _on_ball_ball_brick_normal_bounced() -> void:
 
 func _on_ball_ball_brick_armour_bounced() -> void:
 	bouncearmor.play()
-
 
 func _on_pause_ui_game_unpaused() -> void:
 	get_tree().paused = false
