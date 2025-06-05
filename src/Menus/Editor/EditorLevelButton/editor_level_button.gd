@@ -8,9 +8,12 @@ var type_id: int = 0
 
 var is_mouse_inside: bool = false
 
+# A button that represents the bricks in the edited level
+
 func _process(delta: float) -> void:
 	if not is_mouse_inside: return
 
+	# Update brick appearance on left click, remove it on right click
 	if Globals.is_mouse_left_held:
 		brick_left_pressed.emit(self)
 	elif Globals.is_mouse_right_held:

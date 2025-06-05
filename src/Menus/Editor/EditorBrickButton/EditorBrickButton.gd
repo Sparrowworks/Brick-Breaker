@@ -10,6 +10,7 @@ signal brick_pressed(button: EditorBrickButton)
 @onready var texture_button: TextureButton = $VBoxContainer/TextureButton
 
 func _ready() -> void:
+	# A button that selects which color of brick we want to add
 	arrow.hide()
 	texture_button.texture_normal = button_texture
 

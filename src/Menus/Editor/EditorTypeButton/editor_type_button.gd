@@ -9,6 +9,7 @@ signal type_pressed(button: EditorTypeButton)
 
 
 func _ready() -> void:
+	# A button that selects which type of brick we want to add
 	arrow.hide()
 	match type_id:
 		1:
