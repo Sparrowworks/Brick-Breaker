@@ -521,7 +521,7 @@ func _on_editor_level_brick_left_pressed(button: EditorLevelButton, is_undo: boo
 			button.texture_normal = selected_brick_color.texture_button.texture_normal
 			button.self_modulate = Color.WHITE
 
-		# Update the counters if the type of the brick was different before
+		# Update counters if the brick type has changed.
 		if button.type_id > 0:
 			counters[button.type_id] -= 1
 
