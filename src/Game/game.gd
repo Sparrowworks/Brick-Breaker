@@ -498,7 +498,7 @@ func triple_balls() -> void:
 	right_ball.start_ball(false, true, true)
 
 func kill_powerups() -> void:
-	# Reset all powerup effects and remove each powerup instance present on screen
+	# Clear all powerup effects and active powerups from the screen.
 	for powerup in powerups:
 		powerup.queue_free()
 
