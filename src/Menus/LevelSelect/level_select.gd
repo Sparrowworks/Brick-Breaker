@@ -37,19 +37,20 @@ func _ready() -> void:
 	if OS.get_name() == "Web":
 		$Buttons/HBoxContainer/CustomButton.hide()
 	else:
-		initialize()
+		initialize_custom_levels()
 
 		if not is_initialized:
 			await self.has_initialized
 
-	var list: Array = get_meta("list", [])
+	var previous_list: Array = get_meta("list", [])
 
-	if list.is_empty() or list == official_list:
+	# Show official levels if playing one; otherwise, show custom levels.
+	if previous_list.is_empty() or previous_list == official_list:
 		official_levels.show()
 	else:
 		custom_levels.show()
 
-func initialize() -> void:
+func initialize_custom_levels() -> void:
 	load_files()
 	if custom_list.size() == 0:
 		no_files.show()
@@ -61,7 +62,7 @@ func initialize() -> void:
 func load_files() -> void:
 	var dir: DirAccess = DirAccess.open("user://Levels")
 	if dir == null:
-		print("Error opening directory user://Levels/ with error code: " + str(DirAccess.get_open_error()))
+		printerr("Error opening directory user://Levels/ with error code: " + str(DirAccess.get_open_error()))
 		return
 
 	var files: PackedStringArray = dir.get_files()
@@ -89,6 +90,7 @@ func create_buttons(files: PackedStringArray) -> void:
 			print("Error opening file: " + path + " with error code: " + str(FileAccess.get_open_error()))
 			continue
 
+		# Ignore corrupted or invalid level files; create buttons for valid ones.
 		var loaded_data: Variant = file.get_var(true)
 		file.close()
 

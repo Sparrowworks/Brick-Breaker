@@ -17,6 +17,7 @@ var level_data: Level:
 			level_author.text = level_data.level_author
 
 func _ready() -> void:
+	# A button for choosing which level to edit in the Editor
 	level_title.text = level_data.level_name.replace("_", " ")
 	level_author.text = level_data.level_author
 

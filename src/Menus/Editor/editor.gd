@@ -72,6 +72,7 @@ func _ready() -> void:
 	if not Globals.menu_theme.playing:
 		Globals.menu_theme.play()
 
+	# Set the editor to default values
 	selected_brick_color = blue_brick
 	selected_brick_type = type_normal
 
@@ -85,6 +86,7 @@ func _ready() -> void:
 	editor_error.hide()
 	editor_load.hide()
 
+	# If we're returning from a testing session, draw the tested level
 	if has_meta("editor_data"):
 		var editor_test_data: Level = get_meta("editor_data", Level.new())
 		_on_editor_load_level_edit_pressed(editor_test_data)
@@ -96,6 +98,7 @@ func setup_bricks() -> void:
 	var x: int = 0
 	var y: int = 0
 
+	# Set up the brick dictionary
 	for brick in bricks.get_children():
 		brick.brick_id = Vector2i(x,y)
 		brick_dict[Vector2i(x,y)] = brick
@@ -110,6 +113,7 @@ func show_editor() -> void:
 	file_panel.show()
 	bricks.show()
 
+	# Disable loading files for HTML build
 	if is_html:
 		$FilePanel/VBoxContainer/Buttons/LoadButton.hide()
 
@@ -120,6 +124,7 @@ func hide_editor() -> void:
 	bricks.hide()
 
 func reset_editor() -> void:
+	# Set the editor to default values and reset the UI
 	current_task = null
 	undo_tasks.clear()
 	redo_tasks.clear()
@@ -157,11 +162,13 @@ func reset_editor() -> void:
 	update_counters()
 
 func update_counters() -> void:
+	# Update the brick counters
 	normal_text.text = "Normal: " + str(counters[1])
 	armour_text.text = "Armoured: " + str(counters[2])
 	immune_text.text = "Immune: " + str(counters[3])
 
 func compare_states() -> void:
+	# Compare if the file has unsaved changes with the previously saved version
 	if not is_html:
 		if not FileAccess.file_exists("user://Levels/" + modified_resource.level_name + ".lvl"):
 			is_unsaved = true
@@ -179,6 +186,7 @@ func compare_states() -> void:
 			path_text.text = path_text.text.insert(0, "(unsaved) ")
 
 func check_for_unsaved() -> bool:
+	# Allow saving before exiting or canceling and returning to the Editor.
 	if is_unsaved:
 		editor_error.show_error("Unsaved File", "The file you are editing has unsaved changes. Would you like to save now?", "Yes", true, true)
 		await editor_error.btn_pressed
@@ -196,6 +204,7 @@ func check_for_unsaved() -> bool:
 	return true
 
 func save(quiet: bool = false) -> bool:
+	# Do not create a file on HTML build
 	if not is_html:
 		if FileAccess.file_exists("user://Levels/" + modified_resource.level_name + ".lvl") and main_resource.level_name != modified_resource.level_name:
 			editor_error.show_error("File Already Exists", "A level with this name already exists. Do you want to override it?", "Yes", true)
@@ -205,6 +214,7 @@ func save(quiet: bool = false) -> bool:
 			if editor_error.last_btn_pressed == "No":
 				return false
 
+	# Save the level
 	var error: int = main_resource.save(modified_resource)
 
 	if not quiet:
@@ -239,6 +249,7 @@ func save(quiet: bool = false) -> bool:
 	return true
 
 func undo() -> void:
+	# Undo the previous action
 	if current_task != null:
 		if not current_task.before.is_empty() or not current_task.after.is_empty():
 			undo_tasks.append(current_task)
@@ -250,9 +261,11 @@ func undo() -> void:
 	if undo_tasks.size() == 0:
 		return
 
+	# Allow the undone task to be redone
 	var latest_task: Task = undo_tasks.pop_back()
 	redo_tasks.append(latest_task)
 
+	# Undo each operation on bricks
 	for button: EditorLevelButton in latest_task.after:
 		var old_type: BrickLevelType = latest_task.before[button]
 		if old_type.type_id == 0:
@@ -265,12 +278,15 @@ func undo() -> void:
 
 
 func redo() -> void:
+	# Redo the previous action
 	if redo_tasks.size() == 0:
 		return
 
+	# Allow the redone task to be undone
 	var latest_task: Task = redo_tasks.pop_back()
 	undo_tasks.append(latest_task)
 
+	# Redo each operation on bricks
 	for button: EditorLevelButton in latest_task.before:
 		var old_type: BrickLevelType = latest_task.after[button]
 		if old_type.type_id == 0:
@@ -286,21 +302,26 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if event is InputEventMouseButton:
+		# If we're holding down mouse button, start tracking the operations on bricks
 		if event.is_pressed():
 			if event.button_index == MOUSE_BUTTON_LEFT:
+				# Create a task to undo if it doesn't exist yet
 				if current_task == null:
 					current_task = Task.new()
 
 				Globals.is_mouse_left_held = true
 
 			if event.button_index == MOUSE_BUTTON_RIGHT:
+				# Create a task to undo if it doesn't exist yet
 				if current_task == null:
 					current_task = Task.new()
 
 				Globals.is_mouse_right_held = true
 		else:
+			# Stop tracking brick edits when no mouse button is held.
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				if current_task != null and not Globals.is_mouse_right_held:
+					# Add the task to undo only if its not empty
 					if not current_task.before.is_empty() or not current_task.after.is_empty():
 						undo_tasks.append(current_task)
 
@@ -310,6 +331,7 @@ func _input(event: InputEvent) -> void:
 
 			if event.button_index == MOUSE_BUTTON_RIGHT:
 				if current_task != null and not Globals.is_mouse_left_held:
+					# Add the task to undo only if its not empty
 					if not current_task.before.is_empty() or not current_task.after.is_empty():
 						undo_tasks.append(current_task)
 
@@ -358,6 +380,7 @@ func _on_editor_start_load_file_selected() -> void:
 	editor_load.show()
 
 func _on_editor_load_level_edit_pressed(level: Level) -> void:
+	# Draw the level that was playtested
 	current_task = null
 	undo_tasks.clear()
 	redo_tasks.clear()
@@ -454,6 +477,7 @@ func get_type_button(type: int) -> EditorTypeButton:
 	return null
 
 func _on_editor_brick_pressed(button: EditorBrickButton) -> void:
+	# Select the new color of brick
 	if selected_brick_color == button:
 		return
 
@@ -464,6 +488,7 @@ func _on_editor_brick_pressed(button: EditorBrickButton) -> void:
 	selected_brick_color.arrow.show()
 
 func _on_editor_button_type_pressed(button: EditorTypeButton) -> void:
+	# Select the new type of brick
 	if selected_brick_type == button:
 		return
 
@@ -476,8 +501,10 @@ func _on_editor_button_type_pressed(button: EditorTypeButton) -> void:
 	type_changed.emit(selected_brick_type.type_id)
 
 func _on_editor_level_brick_left_pressed(button: EditorLevelButton, is_undo: bool = false) -> void:
+	# Add the brick to the level with the selected color and type
 	if (button.type_id != selected_brick_type.type_id) or (button.texture_normal != selected_brick_color.texture_button.texture_normal and selected_brick_type.type_id != 3):
 		if not is_undo:
+			# Handle undo actions
 			if button.type_id == 0:
 				var empty_type: BrickLevelType = BrickLevelType.new()
 				empty_type.type_id = 0
@@ -486,6 +513,7 @@ func _on_editor_level_brick_left_pressed(button: EditorLevelButton, is_undo: boo
 			else:
 				current_task.before[button] = modified_resource.level_dict[button.brick_id].duplicate()
 
+		# Draw the immune block if selected
 		if selected_brick_type.type_id == 3:
 			button.texture_normal = BLACK_BRICK
 			button.self_modulate = Color.WHITE
@@ -493,6 +521,7 @@ func _on_editor_level_brick_left_pressed(button: EditorLevelButton, is_undo: boo
 			button.texture_normal = selected_brick_color.texture_button.texture_normal
 			button.self_modulate = Color.WHITE
 
+		# Update counters if the brick type has changed.
 		if button.type_id > 0:
 			counters[button.type_id] -= 1
 
@@ -501,6 +530,7 @@ func _on_editor_level_brick_left_pressed(button: EditorLevelButton, is_undo: boo
 		counters[button.type_id] += 1
 		update_counters()
 
+		# Add the brick to the Level resource
 		var brick_type: BrickLevelType = BrickLevelType.new()
 
 		brick_type.button_id = selected_brick_color.button_id
@@ -517,6 +547,7 @@ func _on_editor_level_brick_left_pressed(button: EditorLevelButton, is_undo: boo
 		compare_states()
 
 func _on_editor_level_brick_right_pressed(button: EditorLevelButton, is_undo: bool = false) -> void:
+	# Clear the brick and remove it from the level
 	button.texture_normal = BLACK_BRICK
 	button.self_modulate = Color.from_rgba8(255, 255, 255, 96)
 
@@ -524,12 +555,15 @@ func _on_editor_level_brick_right_pressed(button: EditorLevelButton, is_undo: bo
 		if not is_undo:
 			current_task.before[button] = modified_resource.level_dict[button.brick_id].duplicate()
 
+		# Update the counters
 		counters[button.type_id] -= 1
 		update_counters()
 
+		# Remove the brick from the Level resource
 		button.type_id = 0
 		modified_resource.level_dict.erase(button.brick_id)
 
+		# Handle undo actions
 		if not is_undo:
 			var empty_type: BrickLevelType = BrickLevelType.new()
 			empty_type.type_id = 0
@@ -542,6 +576,7 @@ func _on_editor_level_brick_right_pressed(button: EditorLevelButton, is_undo: bo
 			compare_states()
 
 func _on_clear_button_pressed() -> void:
+	# Reset the bricks back to empty level
 	current_task = Task.new()
 
 	Globals.button_click.play()
@@ -605,20 +640,24 @@ func _on_check_box_toggled(toggled_on: bool) -> void:
 func _on_play_button_pressed() -> void:
 	Globals.button_click.play()
 
+	# Check if we're not leaving an unsaved file
 	var confirmed: bool = await check_for_unsaved()
 	if not confirmed or editor_error.last_btn_pressed == "No":
 		return
 
+	# Playtest the edited level
 	Globals.menu_theme.stop()
 	Globals.go_to_with_fade("res://src/Game/Game.tscn", {"level_data": main_resource, "editor_launch": true})
 
 func _on_load_button_pressed() -> void:
 	Globals.button_click.play()
 
+	# Check if we're not leaving an unsaved file
 	var confirmed: bool = await check_for_unsaved()
 	if not confirmed:
 		return
 
+	# Show the load menu
 	hide_editor()
 	reset_editor()
 
@@ -628,10 +667,12 @@ func _on_load_button_pressed() -> void:
 func _on_new_button_pressed() -> void:
 	Globals.button_click.play()
 
+	# Check if we're not leaving an unsaved file
 	var confirmed: bool = await check_for_unsaved()
 	if not confirmed:
 		return
 
+	# Create a new level and reset the editor
 	reset_editor()
 
 	main_resource = Level.new()
@@ -641,12 +682,12 @@ func _on_new_button_pressed() -> void:
 	show_editor()
 
 func _on_editor_start_menu_selected() -> void:
+	# Check if we're not leaving an unsaved file
 	var confirmed: bool = await check_for_unsaved()
 	if not confirmed:
 		return
 
 	Globals.go_to_with_fade("res://src/Menus/MainMenu/MainMenu.tscn")
-
 
 func _on_editor_load_back_pressed() -> void:
 	Globals.button_click.play()

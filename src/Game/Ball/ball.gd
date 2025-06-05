@@ -33,6 +33,7 @@ func start_ball(align_left: bool = false, align_right: bool = false, custom_pos:
 	if not custom_pos:
 		position = start_pos
 
+	# Move the ball in the paddle’s movement direction.
 	if align_left == false and align_right == false:
 		velocity = Vector2(randf_range(-1, 1), randf_range(-0.5, -1)).normalized()
 	elif align_left == true:
@@ -45,6 +46,7 @@ func start_ball(align_left: bool = false, align_right: bool = false, custom_pos:
 		first_start.emit()
 
 func _physics_process(delta: float) -> void:
+	# Reenable collision with paddle when moving up
 	if get_collision_mask_value(2) == false and global_position.y < 1700:
 		paddle.set_collision_mask_value(1, true)
 		set_collision_mask_value(2, true)
@@ -59,6 +61,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			return
 
+	# Clamp the velocity to prevent vertical or horizontal movement
 	if velocity.y > -0.3 and velocity.y < 0:
 		velocity.y = -0.3
 	elif velocity.y > 0 and velocity.y <= 0.3:
@@ -69,6 +72,7 @@ func _physics_process(delta: float) -> void:
 	elif velocity.x > 0 and velocity.x <= 0.2:
 		velocity.x = 0.2
 
+	# Kill the ball upon leaving the screen
 	if position.y > 2200:
 		velocity = Vector2.ZERO
 		global_position.y = -200
@@ -80,12 +84,14 @@ func _physics_process(delta: float) -> void:
 
 	var collider: Object = collision.get_collider()
 
+	# Handle collision with paddle
 	if collision.get_collider() is Paddle:
 		paddle_collision(collision, collider as Paddle, delta)
 		return
 
 	ball_brick_normal_bounced.emit()
 
+	# Handle collision with bricks
 	if collider is Brick:
 		if collider.health > 1:
 			ball_brick_armour_bounced.emit()
@@ -100,6 +106,7 @@ func _physics_process(delta: float) -> void:
 
 func paddle_collision(collision: KinematicCollision2D, collider: Paddle, delta: float) -> void:
 	ball_paddle_bounced.emit()
+	# Disable collision with paddle to prevent getting the ball stuck and other bugs
 	paddle.set_collision_mask_value(1, false)
 	set_collision_mask_value(2, false)
 
@@ -110,6 +117,7 @@ func paddle_collision(collision: KinematicCollision2D, collider: Paddle, delta: 
 	var vel_xy: float = velocity.length()
 	var collision_x : float = (ball_center_x - paddle_center_x) / (paddle_width / 2)
 
+	# Calculate the new velocity upon bouncing
 	var new_vel: Vector2 = Vector2.ZERO
 	new_vel.x = vel_xy * collision_x
 	new_vel.y = sqrt(absf(vel_xy*vel_xy - new_vel.x*new_vel.x)) * Vector2.UP.y
@@ -121,6 +129,7 @@ func paddle_collision(collision: KinematicCollision2D, collider: Paddle, delta: 
 func _on_game_game_reset() -> void:
 	if is_locked: return
 
+	# Move the ball back to the starting position
 	position = start_pos
 	velocity = Vector2.ZERO
 	modulate = Color.TRANSPARENT

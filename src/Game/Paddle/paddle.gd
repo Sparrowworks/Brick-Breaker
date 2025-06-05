@@ -29,17 +29,18 @@ func _physics_process(delta: float) -> void:
 	velocity.x = Input.get_axis("left", "right") * speed
 	position.y = start_pos.y
 
+	# Handle the collision with ball
 	var collision := move_and_collide(velocity * speed * delta)
 	if collision:
 		var collider := collision.get_collider()
 		if collider is Ball:
 			collider.paddle_collision(collision, self, delta)
 
-
 func _on_game_game_reset() -> void:
 	tween_finished = false
 	can_move = false
 
+	# Move the paddle back to the starting position
 	var move_tween: Tween = get_tree().create_tween()
 	move_tween.set_trans(Tween.TRANS_CUBIC)
 	move_tween.tween_property(self, "position:x", start_pos.x, 1.0)
@@ -50,7 +51,6 @@ func _on_game_game_reset() -> void:
 	can_move = true
 
 	show_help.emit()
-
 
 func _on_ball_faded_out() -> void:
 	tween_finished = true

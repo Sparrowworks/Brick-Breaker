@@ -114,6 +114,7 @@ func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 	test_powerup.queue_free()
 
+	# Preloading the sounds helps preventing lag on web build
 	if OS.get_name() == "Web":
 		await Globals.transition.finished_fade_out
 
@@ -197,6 +198,7 @@ func setup_level(data: Level) -> void:
 	var x_init_pos: float = 860
 	var y_init_pos: float = 154
 
+	# Create the bricks for the level
 	for key: Vector2i in data.level_dict.keys():
 		var brick_data: BrickLevelType = data.level_dict[key]
 
@@ -212,7 +214,6 @@ func setup_level(data: Level) -> void:
 
 		bricks.add_child(brick)
 
-
 func start_game() -> void:
 	music_player.enable()
 	time_timer.start()
@@ -227,6 +228,7 @@ func spawn_powerup(brick_pos: Vector2) -> void:
 	powerups.append(powerup)
 
 	powerup.global_position = brick_pos
+	# Prevent triple ball from spawning if it's already active.
 	if is_triple_active:
 		powerup.powerup_type = randi_range(1, 7)
 	else:
@@ -496,6 +498,7 @@ func triple_balls() -> void:
 	right_ball.start_ball(false, true, true)
 
 func kill_powerups() -> void:
+	# Clear all powerup effects and active powerups from the screen.
 	for powerup in powerups:
 		powerup.queue_free()
 
@@ -545,10 +548,12 @@ func _on_brick_hit() -> void:
 	update_ui()
 
 func _on_brick_destroyed(brick_pos: Vector2) -> void:
+	# Increase ball speed with each destroyed brick.
 	ball.speed = clampf(ball.speed + 0.1, 30.0, 35.0)
 	left_ball.speed = ball.speed
 	right_ball.speed = ball.speed
 
+	# Increase the chance of spawning a powerup
 	powerup_chance += 2
 	var chance: float = randf_range(1, 100)
 	if chance <= powerup_chance:
@@ -571,6 +576,7 @@ func _on_ball_ball_dead(dead_ball: Ball) -> void:
 	if dead_ball == left_ball or dead_ball == right_ball:
 		dead_ball.hide()
 
+	# Set the last remaining ball as the main one
 	if balls_left == 1:
 		is_triple_active = false
 
@@ -585,6 +591,7 @@ func _on_ball_ball_dead(dead_ball: Ball) -> void:
 				right_ball = ball
 				ball = temp_ball
 
+	# Lose a life if there are no balls left on the screen
 	if balls_left > 0:
 		return
 
@@ -611,6 +618,7 @@ func _on_ball_ball_dead(dead_ball: Ball) -> void:
 	game_reset.emit()
 
 func _on_powerup_gone(powerup: Powerup) -> void:
+	# Allow the triple balls powerup to spawn again
 	if powerup.powerup_type == 8 and balls_left == 1:
 		is_triple_active = false
 
@@ -624,6 +632,7 @@ func _on_powerup_collected(powerup: Powerup) -> void:
 	else:
 		goodpowerup.play()
 
+	# Activate the correct powerup
 	match powerup.powerup_type:
 		1:
 			small_paddle()
@@ -661,6 +670,7 @@ func _on_game_won() -> void:
 
 	win.play()
 
+	# Show a button to return to editor if we're testing
 	if get_meta("editor_launch", false):
 		win_editor_button.show()
 	else:
@@ -695,6 +705,7 @@ func _on_game_over() -> void:
 	lose_panel.show()
 
 func _on_next_button_pressed() -> void:
+	# Get the next level
 	level_id += 1
 	if levels_list.size() == level_id:
 		level_id = 0
@@ -714,7 +725,6 @@ func _on_reset_button_pressed() -> void:
 
 func _on_menu_button_pressed() -> void:
 	Globals.go_to_with_fade("res://src/Menus/LevelSelect/LevelSelect.tscn", {"list": levels_list})
-
 
 func _on_paddle_show_help() -> void:
 	help.show()
@@ -741,7 +751,6 @@ func _on_ball_ball_brick_normal_bounced() -> void:
 
 func _on_ball_ball_brick_armour_bounced() -> void:
 	bouncearmor.play()
-
 
 func _on_pause_ui_game_unpaused() -> void:
 	get_tree().paused = false
