@@ -90,7 +90,7 @@ func create_buttons(files: PackedStringArray) -> void:
 			print("Error opening file: " + path + " with error code: " + str(FileAccess.get_open_error()))
 			continue
 
-		# Check if we're loading an actual level or if something is corrupted or wrong, if yes, then we ignore that file, else we create a button for it
+		# Ignore corrupted or invalid level files; create buttons for valid ones.
 		var loaded_data: Variant = file.get_var(true)
 		file.close()
 
