@@ -186,7 +186,7 @@ func compare_states() -> void:
 			path_text.text = path_text.text.insert(0, "(unsaved) ")
 
 func check_for_unsaved() -> bool:
-	# Allow saving the file before leaving or canceling the operation and going back to Editor
+	# Allow saving before exiting or canceling and returning to the Editor.
 	if is_unsaved:
 		editor_error.show_error("Unsaved File", "The file you are editing has unsaved changes. Would you like to save now?", "Yes", true, true)
 		await editor_error.btn_pressed
