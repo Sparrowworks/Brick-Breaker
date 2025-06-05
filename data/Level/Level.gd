@@ -27,7 +27,7 @@ func save(modified_resource: Level) -> int:
 	if modified_resource.level_dict.is_empty():
 		return 3
 
-	# Check if the level isn't empty and doesn't have only immune bricks
+	# Ensure the level has bricks and not just immune ones.
 	var is_immune_only: bool = true
 	for value: BrickLevelType in modified_resource.level_dict.values():
 		if value.type_id != 3:
