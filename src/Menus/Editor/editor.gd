@@ -318,7 +318,7 @@ func _input(event: InputEvent) -> void:
 
 				Globals.is_mouse_right_held = true
 		else:
-			# If we're not holding down any mouse buttons, stop tracking the operations on bricks
+			# Stop tracking brick edits when no mouse button is held.
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				if current_task != null and not Globals.is_mouse_right_held:
 					# Add the task to undo only if its not empty
