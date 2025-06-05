@@ -548,7 +548,7 @@ func _on_brick_hit() -> void:
 	update_ui()
 
 func _on_brick_destroyed(brick_pos: Vector2) -> void:
-	# Increase the speed on the ball with each brick destroyed
+	# Increase ball speed with each destroyed brick.
 	ball.speed = clampf(ball.speed + 0.1, 30.0, 35.0)
 	left_ball.speed = ball.speed
 	right_ball.speed = ball.speed
