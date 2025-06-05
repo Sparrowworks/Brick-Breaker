@@ -228,7 +228,7 @@ func spawn_powerup(brick_pos: Vector2) -> void:
 	powerups.append(powerup)
 
 	powerup.global_position = brick_pos
-	# Prevent spawning the triple ball from spawning if its already present or active
+	# Prevent triple ball from spawning if it's already active.
 	if is_triple_active:
 		powerup.powerup_type = randi_range(1, 7)
 	else:
