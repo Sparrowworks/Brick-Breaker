@@ -498,6 +498,7 @@ func triple_balls() -> void:
 	right_ball.start_ball(false, true, true)
 
 func kill_powerups() -> void:
+	# Reset all powerup effects and remove each powerup instance present on screen
 	for powerup in powerups:
 		powerup.queue_free()
 
@@ -547,10 +548,12 @@ func _on_brick_hit() -> void:
 	update_ui()
 
 func _on_brick_destroyed(brick_pos: Vector2) -> void:
+	# Increase the speed on the ball with each brick destroyed
 	ball.speed = clampf(ball.speed + 0.1, 30.0, 35.0)
 	left_ball.speed = ball.speed
 	right_ball.speed = ball.speed
 
+	# Increase the chance of spawning a powerup
 	powerup_chance += 2
 	var chance: float = randf_range(1, 100)
 	if chance <= powerup_chance:
@@ -573,6 +576,7 @@ func _on_ball_ball_dead(dead_ball: Ball) -> void:
 	if dead_ball == left_ball or dead_ball == right_ball:
 		dead_ball.hide()
 
+	# Set the last remaining ball as the main one
 	if balls_left == 1:
 		is_triple_active = false
 
@@ -587,6 +591,7 @@ func _on_ball_ball_dead(dead_ball: Ball) -> void:
 				right_ball = ball
 				ball = temp_ball
 
+	# Lose a life if there are no balls left on the screen
 	if balls_left > 0:
 		return
 
@@ -613,6 +618,7 @@ func _on_ball_ball_dead(dead_ball: Ball) -> void:
 	game_reset.emit()
 
 func _on_powerup_gone(powerup: Powerup) -> void:
+	# Allow the triple balls powerup to spawn again
 	if powerup.powerup_type == 8 and balls_left == 1:
 		is_triple_active = false
 
@@ -626,6 +632,7 @@ func _on_powerup_collected(powerup: Powerup) -> void:
 	else:
 		goodpowerup.play()
 
+	# Activate the correct powerup
 	match powerup.powerup_type:
 		1:
 			small_paddle()
@@ -698,6 +705,7 @@ func _on_game_over() -> void:
 	lose_panel.show()
 
 func _on_next_button_pressed() -> void:
+	# Get the next level
 	level_id += 1
 	if levels_list.size() == level_id:
 		level_id = 0
