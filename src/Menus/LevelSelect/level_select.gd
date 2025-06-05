@@ -44,7 +44,7 @@ func _ready() -> void:
 
 	var previous_list: Array = get_meta("list", [])
 
-	# If we played an official level, shows the official levels list, else shows the custom ones
+	# Show official levels if playing one; otherwise, show custom levels.
 	if previous_list.is_empty() or previous_list == official_list:
 		official_levels.show()
 	else:
