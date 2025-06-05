@@ -33,7 +33,7 @@ func start_ball(align_left: bool = false, align_right: bool = false, custom_pos:
 	if not custom_pos:
 		position = start_pos
 
-	# Move the ball in the direction the player moved the paddle
+	# Move the ball in the paddle’s movement direction.
 	if align_left == false and align_right == false:
 		velocity = Vector2(randf_range(-1, 1), randf_range(-0.5, -1)).normalized()
 	elif align_left == true:
