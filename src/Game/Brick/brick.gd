@@ -30,6 +30,7 @@ func _ready() -> void:
 		animated_sprite_2d.animation = str(ceili(health)) + "_" + str(color)
 
 func lower_health(is_weak: bool = false, is_strong: bool = false) -> void:
+	# Ignore the damage for immune blocks
 	if health == 3 or health <= 0:
 		return
 

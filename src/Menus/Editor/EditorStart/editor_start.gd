@@ -5,6 +5,7 @@ signal load_file_selected()
 signal menu_selected()
 
 func _ready() -> void:
+	# Disable the loading option for HTML build
 	if OS.get_name() == "Web":
 		$Panel/VBoxContainer/Buttons/LoadButton.hide()
 

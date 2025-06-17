@@ -10,6 +10,7 @@ const EDITOR_LOAD_FILE = preload("res://src/Menus/Editor/EditorLoadFile/EditorLo
 @onready var editor_error: EditorError = $EditorError
 
 func _ready() -> void:
+	# A menu that allows loading levels to edit in the Editor
 	editor_error.hide()
 
 func initialize() -> void:
@@ -27,6 +28,7 @@ func load_files() -> Array:
 		print("Error opening directory user://Levels/ with error code: " + str(DirAccess.get_open_error()))
 		return []
 
+	# Ignore files that aren't levels
 	var files: PackedStringArray = dir.get_files()
 	for idx in range(files.size()-1, -1, -1):
 		if not files[idx].ends_with(".lvl"):
@@ -40,6 +42,7 @@ func load_file(path: String, buttons_found: Array[String]) -> Level:
 		print("Error opening file: " + path + " with error code: " + str(FileAccess.get_open_error()))
 		return null
 
+	# Check if the level we're loading is correct and is not corrupt
 	var loaded_data: Variant = file.get_var(true)
 	file.close()
 
@@ -55,6 +58,7 @@ func load_file(path: String, buttons_found: Array[String]) -> Level:
 		buttons_found.erase(data["name"])
 		return null
 
+	# Create a Level Resource
 	var level_data: Level = Level.new()
 	level_data.level_name = data.get("name", "My level")
 	level_data.level_author = data.get("author", "Anon")
@@ -82,6 +86,7 @@ func create_buttons(files: PackedStringArray) -> void:
 
 		buttons_found.append(child.name)
 
+	# Create buttons for each loaded level
 	for path in files:
 		var button_data: Level = load_file(path, buttons_found)
 
@@ -93,6 +98,7 @@ func create_buttons(files: PackedStringArray) -> void:
 
 		button_container.add_child(file_button)
 
+	# Remove the old level buttons
 	for button_name in buttons_found:
 		button_container.get_node(button_name).queue_free()
 

@@ -27,6 +27,7 @@ func save(modified_resource: Level) -> int:
 	if modified_resource.level_dict.is_empty():
 		return 3
 
+	# Check if the level isn't empty and doesn't have only immune bricks
 	var is_immune_only: bool = true
 	for value: BrickLevelType in modified_resource.level_dict.values():
 		if value.type_id != 3:
@@ -53,6 +54,7 @@ func save(modified_resource: Level) -> int:
 	self.level_path = "user://Levels/" + self.level_name + ".lvl"
 	self.game_ver = ProjectSettings.get_setting("application/config/version")
 
+	# Do not create a file on HTML build
 	if OS.get_name() != "Web":
 		var level_data: Dictionary = {
 			"name": self.level_name,
@@ -68,6 +70,7 @@ func save(modified_resource: Level) -> int:
 	return 0
 
 func is_equal(compared_level: Level) -> bool:
+	# Find any differences between this Level and the compared one
 	if compared_level.level_name != self.level_name:
 		return false
 

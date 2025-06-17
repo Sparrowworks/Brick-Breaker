@@ -16,6 +16,6 @@ signal level_pressed(button: LevelButtonOfficial)
 func _ready() -> void:
 	level_text.text = level_title
 
-
 func _on_pressed() -> void:
+	Globals.button_click.play()
 	level_pressed.emit(self)
