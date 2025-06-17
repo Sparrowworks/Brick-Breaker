@@ -186,7 +186,7 @@ func compare_states() -> void:
 			path_text.text = path_text.text.insert(0, "(unsaved) ")
 
 func check_for_unsaved() -> bool:
-	# Allow saving the file before leaving or canceling the operation and going back to Editor
+	# Allow saving before exiting or canceling and returning to the Editor.
 	if is_unsaved:
 		editor_error.show_error("Unsaved File", "The file you are editing has unsaved changes. Would you like to save now?", "Yes", true, true)
 		await editor_error.btn_pressed
@@ -318,7 +318,7 @@ func _input(event: InputEvent) -> void:
 
 				Globals.is_mouse_right_held = true
 		else:
-			# If we're not holding down any mouse buttons, stop tracking the operations on bricks
+			# Stop tracking brick edits when no mouse button is held.
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				if current_task != null and not Globals.is_mouse_right_held:
 					# Add the task to undo only if its not empty
@@ -521,7 +521,7 @@ func _on_editor_level_brick_left_pressed(button: EditorLevelButton, is_undo: boo
 			button.texture_normal = selected_brick_color.texture_button.texture_normal
 			button.self_modulate = Color.WHITE
 
-		# Update the counters if the type of the brick was different before
+		# Update counters if the brick type has changed.
 		if button.type_id > 0:
 			counters[button.type_id] -= 1
 

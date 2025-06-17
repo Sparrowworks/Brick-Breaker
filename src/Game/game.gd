@@ -228,7 +228,7 @@ func spawn_powerup(brick_pos: Vector2) -> void:
 	powerups.append(powerup)
 
 	powerup.global_position = brick_pos
-	# Prevent spawning the triple ball from spawning if its already present or active
+	# Prevent triple ball from spawning if it's already active.
 	if is_triple_active:
 		powerup.powerup_type = randi_range(1, 7)
 	else:
@@ -498,7 +498,7 @@ func triple_balls() -> void:
 	right_ball.start_ball(false, true, true)
 
 func kill_powerups() -> void:
-	# Reset all powerup effects and remove each powerup instance present on screen
+	# Clear all powerup effects and active powerups from the screen.
 	for powerup in powerups:
 		powerup.queue_free()
 
@@ -548,7 +548,7 @@ func _on_brick_hit() -> void:
 	update_ui()
 
 func _on_brick_destroyed(brick_pos: Vector2) -> void:
-	# Increase the speed on the ball with each brick destroyed
+	# Increase ball speed with each destroyed brick.
 	ball.speed = clampf(ball.speed + 0.1, 30.0, 35.0)
 	left_ball.speed = ball.speed
 	right_ball.speed = ball.speed
