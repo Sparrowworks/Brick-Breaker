@@ -13,11 +13,11 @@ var headings: Array[String] = [
 	"Credits:",
 ]
 var content: Array[String] = [
-	"Move the paddle around to bounce the ball and destroy the bricks.
+	"""Move the paddle around to bounce the ball and destroy the bricks.
 	To finish a level, you must destroy all of them. Bricks with white outlines need 2 hits to be destroyed. Black ones are indestructible and do not count towards your goal.
-	You might also gain a powerup, which may give you a buff or a debuff, depending on your luck.",
+	You might also gain a powerup, which may give you a buff or a debuff, depending on your luck.""",
 
-	"Gameplay:
+	"""Gameplay:
 	A or Left arrow - Move left
 	d or Right arrow - Move right
 	Esc - Back to menu
@@ -30,9 +30,9 @@ var content: Array[String] = [
 	LCTRL + N - New
 	LCTRL + P - Test the level
 	LCTRL + Z - Undo
-	LCTRL + Y - Redo",
+	LCTRL + Y - Redo""",
 
-	"game developed by sparrowworks
+	"""game developed by sparrowworks
 
 	programming: sp4r0w
 	testing: vargadot
@@ -40,7 +40,7 @@ var content: Array[String] = [
 	Graphics made by Kenney and SP4R0W
 
 	Music made by Benjamin Burnes
-	Sound effects made by Kenney"
+	Sound effects made by Kenney"""
 ]
 
 func _ready() -> void:
